@@ -1,0 +1,13 @@
+PKG=HylaFAX
+NAME=HylaFAX 7.0.6 fax server/client
+ARCH=x86_64
+VERSION=7.0.6
+CATEGORY=application
+DESC=HylaFAX 7.0.6 fax server/client
+VENDOR=Your Name Here
+EMAIL=someone@somehost.somedomain
+PSTAMP=x86_64-unknown-linux-gnu Fri Jun 24 19:36:27 UTC 2022
+CLASSES="none"
+ISTATES=S s 1 2 3 4
+RSTATES=S s 1 2 3 4
+PREDEPEND=HylaFAX

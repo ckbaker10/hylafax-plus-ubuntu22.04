@@ -1,0 +1,3 @@
+# DO NOT DELETE THIS LINE -- make depend uses it
+version.o: version.c ${INCLDIR}/stdc-predef.h
+# DO NOT DELETE THIS 2nd LINE -- make depend uses it

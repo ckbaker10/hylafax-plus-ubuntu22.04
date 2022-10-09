@@ -1,0 +1,19 @@
+#
+# $Id: postremove.in 2 2005-11-11 21:32:03Z faxguy $
+#	Tim Rice
+#
+#	postremove
+#
+
+if test -d /var/spool/hylafax
+then
+	echo "\n\nYou will need to remove /var/spool/hylafax"
+	echo "after saving any files you want to save\n"
+	echo "rm -fr /var/spool/hylafax\n"
+
+# I'll automate this part when I get time
+	echo "Remove /usr/local/sbin/faxqclean from root's crontab"
+	echo "Remove /usr/local/sbin/faxcron from uucp's crontab"
+fi
+
+exit 0

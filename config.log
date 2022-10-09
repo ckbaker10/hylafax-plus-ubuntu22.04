@@ -1,0 +1,6394 @@
+Sun Oct  9 12:02:31 UTC 2022
+
+This file contains information that was captured from running the configure
+script.  Lines that begin with a "+" are command lines echoed by the
+shell.  Other lines are the output of commands; usually the contents of
+test case files or the output from compilers.  If configure does the
+wrong thing, use the information captured here to aid in debugging.
+
++ . ./config.site
+TARGET: x86_64-unknown-linux-gnu
+RELEASE: 5.15.0-48-generic
++ cat dummy.c
+#include <stdlib.h>
+int main(int argc, char* argv[]) { exit(0); }
++ cat xgnu.c
+#ifdef __GNUC__
+yes;
+#endif
++ gcc -E xgnu.c
++ egrep yes
+yes;
++ gcc -o dummy dummy.c
++ /usr/bin/gcc -g -c dummy.c
++ cat dummy.c
+#define ansiIDENT(a) a
+#define ansiCAT(a,b) a##b
+A=ansiCAT(ANSI,CPP);
++ /usr/bin/gcc -E dummy.c
++ grep ANSICPP
+A=ANSICPP;
++ cat dummy.c
+#ifdef __ANSI_CPP__
+yes
+#else
+no
+#endif
++ /usr/bin/gcc -E dummy.c
++ grep no
+no
++ cat dummy.c
+#include <stdlib.h>
+int main(int argc, char* argv[]) { exit(0); }
++ /usr/bin/gcc -c -M dummy.c
++ grep ^dummy.o[ 	]*:[ 	]*dummy.c
+dummy.o: dummy.c /usr/include/stdc-predef.h /usr/include/stdlib.h \
++ cat dummy.C
+class foo {
+public:
+    struct bar {
+	int a;
+	bar();
+    };
+    foo();
+};
+foo::bar::bar() { a = 0; }
+foo::foo() { bar x; }
+int main() { foo t; return 0; }
++ cat xgnu.c
+#ifdef __GNUC__
+yes;
+#endif
++ g++ -E xgnu.c
++ egrep yes
+yes;
++ g++ -o dummy dummy.C
++ /usr/bin/g++ -c -g dummy.C
++ cat dummy.C
+#define ansiIDENT(a) a
+#define ansiCAT(a,b) a##b
+A=ansiCAT(ANSI,CPP);
++ /usr/bin/g++ -E dummy.C
++ grep ANSICPP
+A=ANSICPP;
++ /usr/bin/g++ -E dummy.C
++ grep no
+no
++ cat dummy.C
+/* this comment should be stripped */
+something else just in case
+and another line also
++ /usr/bin/g++ -E dummy.C
++ grep comment
++ cat dummy.C
+int main()
+{
+    bool success = false;
+    return 0;
+}
++ /usr/bin/g++ dummy.C
++ cat confMakefile
+include xmakeinc
+all:
++ make -f confMakefile
+make: Nothing to be done for 'all'.
++ cat confMakefile
+sinclude xMakedepend
+all:
++ make -f confMakefile
+make: Nothing to be done for 'all'.
++ cat dummy.C
+#include <new>
+struct foo {
+    int x;
+    foo();
+    ~foo();
+};
+foo::foo() {}
+foo::~foo() {}
+int main()
+{
+    foo* ptr = 0;
+    foo* a = new(ptr) foo;
+    a->x = 0;
+    delete a;
+    return 0;
+}
++ /usr/bin/g++ -o dummy dummy.C
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c++
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c++
++ cat t.c
+extern int regexec();
+int t(void) { regexec(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c 
++ cat t.c++
+#include "regex.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/regex.h" 1 3 4
+# 23 "/usr/include/regex.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/types.h" 1 3 4
+# 25 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 26 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+# 27 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+extern "C" {
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned char __u_char;
+typedef unsigned short int __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long int __u_long;
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef signed short int __int16_t;
+typedef unsigned short int __uint16_t;
+typedef signed int __int32_t;
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+typedef unsigned long int __uint64_t;
+
+
+
+
+
+
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
+
+
+
+typedef long int __quad_t;
+typedef unsigned long int __u_quad_t;
+
+
+
+
+
+
+
+typedef long int __intmax_t;
+typedef unsigned long int __uintmax_t;
+# 141 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/typesizes.h" 1 3 4
+# 142 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/time64.h" 1 3 4
+# 143 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned long int __dev_t;
+typedef unsigned int __uid_t;
+typedef unsigned int __gid_t;
+typedef unsigned long int __ino_t;
+typedef unsigned long int __ino64_t;
+typedef unsigned int __mode_t;
+typedef unsigned long int __nlink_t;
+typedef long int __off_t;
+typedef long int __off64_t;
+typedef int __pid_t;
+typedef struct { int __val[2]; } __fsid_t;
+typedef long int __clock_t;
+typedef unsigned long int __rlim_t;
+typedef unsigned long int __rlim64_t;
+typedef unsigned int __id_t;
+typedef long int __time_t;
+typedef unsigned int __useconds_t;
+typedef long int __suseconds_t;
+typedef long int __suseconds64_t;
+
+typedef int __daddr_t;
+typedef int __key_t;
+
+
+typedef int __clockid_t;
+
+
+typedef void * __timer_t;
+
+
+typedef long int __blksize_t;
+
+
+
+
+typedef long int __blkcnt_t;
+typedef long int __blkcnt64_t;
+
+
+typedef unsigned long int __fsblkcnt_t;
+typedef unsigned long int __fsblkcnt64_t;
+
+
+typedef unsigned long int __fsfilcnt_t;
+typedef unsigned long int __fsfilcnt64_t;
+
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+
+
+typedef __off64_t __loff_t;
+typedef char *__caddr_t;
+
+
+typedef long int __intptr_t;
+
+
+typedef unsigned int __socklen_t;
+
+
+
+
+typedef int __sig_atomic_t;
+# 30 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef __u_char u_char;
+typedef __u_short u_short;
+typedef __u_int u_int;
+typedef __u_long u_long;
+typedef __quad_t quad_t;
+typedef __u_quad_t u_quad_t;
+typedef __fsid_t fsid_t;
+
+
+typedef __loff_t loff_t;
+
+
+
+
+typedef __ino_t ino_t;
+
+
+
+
+
+
+typedef __ino64_t ino64_t;
+
+
+
+
+typedef __dev_t dev_t;
+
+
+
+
+typedef __gid_t gid_t;
+
+
+
+
+typedef __mode_t mode_t;
+
+
+
+
+typedef __nlink_t nlink_t;
+
+
+
+
+typedef __uid_t uid_t;
+
+
+
+
+
+typedef __off_t off_t;
+
+
+
+
+
+
+typedef __off64_t off64_t;
+
+
+
+
+typedef __pid_t pid_t;
+
+
+
+
+
+typedef __id_t id_t;
+
+
+
+
+typedef __ssize_t ssize_t;
+
+
+
+
+
+typedef __daddr_t daddr_t;
+typedef __caddr_t caddr_t;
+
+
+
+
+
+typedef __key_t key_t;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/clock_t.h" 1 3 4
+
+
+
+
+
+
+typedef __clock_t clock_t;
+# 127 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h" 1 3 4
+
+
+
+
+
+
+typedef __clockid_t clockid_t;
+# 129 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 3 4
+typedef __time_t time_t;
+# 130 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/timer_t.h" 1 3 4
+
+
+
+
+
+
+typedef __timer_t timer_t;
+# 131 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef __useconds_t useconds_t;
+
+
+
+typedef __suseconds_t suseconds_t;
+
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 145 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+typedef unsigned long int ulong;
+typedef unsigned short int ushort;
+typedef unsigned int uint;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 3 4
+typedef __int8_t int8_t;
+typedef __int16_t int16_t;
+typedef __int32_t int32_t;
+typedef __int64_t int64_t;
+# 156 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+typedef __uint8_t u_int8_t;
+typedef __uint16_t u_int16_t;
+typedef __uint32_t u_int32_t;
+typedef __uint64_t u_int64_t;
+
+
+typedef int register_t __attribute__ ((__mode__ (__word__)));
+# 176 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+# 1 "/usr/include/endian.h" 1 3 4
+# 24 "/usr/include/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endianness.h" 1 3 4
+# 36 "/usr/include/x86_64-linux-gnu/bits/endian.h" 2 3 4
+# 25 "/usr/include/endian.h" 2 3 4
+# 35 "/usr/include/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 1 3 4
+# 33 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+static __inline __uint16_t
+__bswap_16 (__uint16_t __bsx)
+{
+
+  return __builtin_bswap16 (__bsx);
+
+
+
+}
+
+
+
+
+
+
+static __inline __uint32_t
+__bswap_32 (__uint32_t __bsx)
+{
+
+  return __builtin_bswap32 (__bsx);
+
+
+
+}
+# 69 "/usr/include/x86_64-linux-gnu/bits/byteswap.h" 3 4
+__extension__ static __inline __uint64_t
+__bswap_64 (__uint64_t __bsx)
+{
+
+  return __builtin_bswap64 (__bsx);
+
+
+
+}
+# 36 "/usr/include/endian.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 1 3 4
+# 32 "/usr/include/x86_64-linux-gnu/bits/uintn-identity.h" 3 4
+static __inline __uint16_t
+__uint16_identity (__uint16_t __x)
+{
+  return __x;
+}
+
+static __inline __uint32_t
+__uint32_identity (__uint32_t __x)
+{
+  return __x;
+}
+
+static __inline __uint64_t
+__uint64_identity (__uint64_t __x)
+{
+  return __x;
+}
+# 37 "/usr/include/endian.h" 2 3 4
+# 177 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
+# 30 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
+# 31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 1 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h" 1 3 4
+
+
+
+
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+# 5 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 2 3 4
+
+
+typedef __sigset_t sigset_t;
+# 34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 1 3 4
+
+
+
+
+
+
+
+struct timeval
+{
+
+
+
+
+  __time_t tv_sec;
+  __suseconds_t tv_usec;
+
+};
+# 38 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+struct timespec
+{
+
+
+
+  __time_t tv_sec;
+
+
+
+
+  __syscall_slong_t tv_nsec;
+# 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+};
+# 40 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+# 49 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef long int __fd_mask;
+# 59 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef struct
+  {
+
+
+
+    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+
+
+
+
+
+  } fd_set;
+
+
+
+
+
+
+typedef __fd_mask fd_mask;
+# 91 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern "C" {
+# 102 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int select (int __nfds, fd_set *__restrict __readfds,
+     fd_set *__restrict __writefds,
+     fd_set *__restrict __exceptfds,
+     struct timeval *__restrict __timeout);
+# 127 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int pselect (int __nfds, fd_set *__restrict __readfds,
+      fd_set *__restrict __writefds,
+      fd_set *__restrict __exceptfds,
+      const struct timespec *__restrict __timeout,
+      const __sigset_t *__restrict __sigmask);
+# 150 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select2.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/select2.h" 3 4
+extern long int __fdelt_chk (long int __d);
+extern long int __fdelt_warn (long int __d)
+  __attribute__((__warning__ ("bit outside of fd_set selected")));
+# 151 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+}
+# 180 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+
+
+
+typedef __blksize_t blksize_t;
+
+
+
+
+
+
+typedef __blkcnt_t blkcnt_t;
+
+
+
+typedef __fsblkcnt_t fsblkcnt_t;
+
+
+
+typedef __fsfilcnt_t fsfilcnt_t;
+# 219 "/usr/include/x86_64-linux-gnu/sys/types.h" 3 4
+typedef __blkcnt64_t blkcnt64_t;
+typedef __fsblkcnt64_t fsblkcnt64_t;
+typedef __fsfilcnt64_t fsfilcnt64_t;
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 1 3 4
+# 44 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 1 3 4
+# 21 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h" 2 3 4
+# 45 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 1 3 4
+# 25 "/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h" 3 4
+typedef union
+{
+  __extension__ unsigned long long int __value64;
+  struct
+  {
+    unsigned int __low;
+    unsigned int __high;
+  } __value32;
+} __atomic_wide_counter;
+# 47 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+
+
+
+typedef struct __pthread_internal_list
+{
+  struct __pthread_internal_list *__prev;
+  struct __pthread_internal_list *__next;
+} __pthread_list_t;
+
+typedef struct __pthread_internal_slist
+{
+  struct __pthread_internal_slist *__next;
+} __pthread_slist_t;
+# 76 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
+struct __pthread_mutex_s
+{
+  int __lock;
+  unsigned int __count;
+  int __owner;
+
+  unsigned int __nusers;
+
+
+
+  int __kind;
+
+  short __spins;
+  short __elision;
+  __pthread_list_t __list;
+# 53 "/usr/include/x86_64-linux-gnu/bits/struct_mutex.h" 3 4
+};
+# 77 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+# 89 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
+struct __pthread_rwlock_arch_t
+{
+  unsigned int __readers;
+  unsigned int __writers;
+  unsigned int __wrphase_futex;
+  unsigned int __writers_futex;
+  unsigned int __pad3;
+  unsigned int __pad4;
+
+  int __cur_writer;
+  int __shared;
+  signed char __rwelision;
+
+
+
+
+  unsigned char __pad1[7];
+
+
+  unsigned long int __pad2;
+
+
+  unsigned int __flags;
+# 55 "/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h" 3 4
+};
+# 90 "/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h" 2 3 4
+
+
+
+
+struct __pthread_cond_s
+{
+  __atomic_wide_counter __wseq;
+  __atomic_wide_counter __g1_start;
+  unsigned int __g_refs[2] ;
+  unsigned int __g_size[2];
+  unsigned int __g1_orig_size;
+  unsigned int __wrefs;
+  unsigned int __g_signals[2];
+};
+
+typedef unsigned int __tss_t;
+typedef unsigned long int __thrd_t;
+
+typedef struct
+{
+  int __data ;
+} __once_flag;
+# 24 "/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h" 2 3 4
+
+
+
+typedef unsigned long int pthread_t;
+
+
+
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_mutexattr_t;
+
+
+
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_condattr_t;
+
+
+
+typedef unsigned int pthread_key_t;
+
+
+
+typedef int pthread_once_t;
+
+
+union pthread_attr_t
+{
+  char __size[56];
+  long int __align;
+};
+
+typedef union pthread_attr_t pthread_attr_t;
+
+
+
+
+typedef union
+{
+  struct __pthread_mutex_s __data;
+  char __size[40];
+  long int __align;
+} pthread_mutex_t;
+
+
+typedef union
+{
+  struct __pthread_cond_s __data;
+  char __size[48];
+  __extension__ long long int __align;
+} pthread_cond_t;
+
+
+
+
+
+typedef union
+{
+  struct __pthread_rwlock_arch_t __data;
+  char __size[56];
+  long int __align;
+} pthread_rwlock_t;
+
+typedef union
+{
+  char __size[8];
+  long int __align;
+} pthread_rwlockattr_t;
+
+
+
+
+
+typedef volatile int pthread_spinlock_t;
+
+
+
+
+typedef union
+{
+  char __size[32];
+  long int __align;
+} pthread_barrier_t;
+
+typedef union
+{
+  char __size[4];
+  int __align;
+} pthread_barrierattr_t;
+# 228 "/usr/include/x86_64-linux-gnu/sys/types.h" 2 3 4
+
+
+}
+# 24 "/usr/include/regex.h" 2 3 4
+
+
+
+extern "C" {
+# 55 "/usr/include/regex.h" 3 4
+typedef unsigned int __re_size_t;
+typedef unsigned long int __re_long_size_t;
+
+
+
+
+
+
+
+typedef long int s_reg_t;
+typedef unsigned long int active_reg_t;
+
+
+
+
+
+
+typedef unsigned long int reg_syntax_t;
+# 211 "/usr/include/regex.h" 3 4
+extern reg_syntax_t re_syntax_options;
+# 346 "/usr/include/regex.h" 3 4
+typedef enum
+{
+  _REG_ENOSYS = -1,
+  _REG_NOERROR = 0,
+  _REG_NOMATCH,
+
+
+
+  _REG_BADPAT,
+  _REG_ECOLLATE,
+  _REG_ECTYPE,
+  _REG_EESCAPE,
+  _REG_ESUBREG,
+  _REG_EBRACK,
+  _REG_EPAREN,
+  _REG_EBRACE,
+  _REG_BADBR,
+  _REG_ERANGE,
+  _REG_ESPACE,
+  _REG_BADRPT,
+
+
+  _REG_EEND,
+  _REG_ESIZE,
+  _REG_ERPAREN
+} reg_errcode_t;
+# 413 "/usr/include/regex.h" 3 4
+struct re_pattern_buffer
+{
+
+
+  struct re_dfa_t *buffer;
+
+
+  __re_long_size_t allocated;
+
+
+  __re_long_size_t used;
+
+
+  reg_syntax_t syntax;
+
+
+
+
+  char *fastmap;
+
+
+
+
+
+  unsigned char * translate;
+
+
+  size_t re_nsub;
+
+
+
+
+
+  unsigned can_be_null : 1;
+# 457 "/usr/include/regex.h" 3 4
+  unsigned regs_allocated : 2;
+
+
+
+  unsigned fastmap_accurate : 1;
+
+
+
+  unsigned no_sub : 1;
+
+
+
+  unsigned not_bol : 1;
+
+
+  unsigned not_eol : 1;
+
+
+  unsigned newline_anchor : 1;
+};
+
+typedef struct re_pattern_buffer regex_t;
+# 490 "/usr/include/regex.h" 3 4
+typedef int regoff_t;
+
+
+
+
+
+
+struct re_registers
+{
+  __re_size_t num_regs;
+  regoff_t *start;
+  regoff_t *end;
+};
+# 517 "/usr/include/regex.h" 3 4
+typedef struct
+{
+  regoff_t rm_so;
+  regoff_t rm_eo;
+} regmatch_t;
+# 535 "/usr/include/regex.h" 3 4
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wvla"
+# 552 "/usr/include/regex.h" 3 4
+extern reg_syntax_t re_set_syntax (reg_syntax_t __syntax);
+# 562 "/usr/include/regex.h" 3 4
+extern const char *re_compile_pattern (const char *__pattern, size_t __length,
+           struct re_pattern_buffer *__buffer)
+    __attribute__ ((__access__ (__read_only__, 1, 2)));
+
+
+
+
+
+extern int re_compile_fastmap (struct re_pattern_buffer *__buffer);
+
+
+
+
+
+
+
+extern regoff_t re_search (struct re_pattern_buffer *__buffer,
+      const char *__String, regoff_t __length,
+      regoff_t __start, regoff_t __range,
+      struct re_registers *__regs)
+    __attribute__ ((__access__ (__read_only__, 2, 3)));
+
+
+
+
+extern regoff_t re_search_2 (struct re_pattern_buffer *__buffer,
+        const char *__string1, regoff_t __length1,
+        const char *__string2, regoff_t __length2,
+        regoff_t __start, regoff_t __range,
+        struct re_registers *__regs,
+        regoff_t __stop)
+    __attribute__ ((__access__ (__read_only__, 2, 3)))
+    __attribute__ ((__access__ (__read_only__, 4, 5)));
+
+
+
+
+extern regoff_t re_match (struct re_pattern_buffer *__buffer,
+     const char *__String, regoff_t __length,
+     regoff_t __start, struct re_registers *__regs)
+    __attribute__ ((__access__ (__read_only__, 2, 3)));
+
+
+
+extern regoff_t re_match_2 (struct re_pattern_buffer *__buffer,
+       const char *__string1, regoff_t __length1,
+       const char *__string2, regoff_t __length2,
+       regoff_t __start, struct re_registers *__regs,
+       regoff_t __stop)
+    __attribute__ ((__access__ (__read_only__, 2, 3)))
+    __attribute__ ((__access__ (__read_only__, 4, 5)));
+# 627 "/usr/include/regex.h" 3 4
+extern void re_set_registers (struct re_pattern_buffer *__buffer,
+         struct re_registers *__regs,
+         __re_size_t __num_regs,
+         regoff_t *__starts, regoff_t *__ends);
+# 675 "/usr/include/regex.h" 3 4
+extern int regcomp (regex_t *__restrict __preg,
+      const char *__restrict __pattern,
+      int __cflags);
+
+extern int regexec (const regex_t *__restrict __preg,
+      const char *__restrict __String, size_t __nmatch,
+      regmatch_t __pmatch[
+     ],
+      int __eflags);
+
+extern size_t regerror (int __errcode, const regex_t *__restrict __preg,
+   char *__restrict __errbuf, size_t __errbuf_size)
+    __attribute__ ((__access__ (__write_only__, 3, 4)));
+
+extern void regfree (regex_t *__preg);
+
+
+#pragma GCC diagnostic pop
+
+
+
+}
+# 2 "t.c++" 2
++ cat t.c
+#include "regex.h"
+#ifdef REG_STARTEND
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+extern int iopen();
+int t(void) { iopen(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -limage
+/usr/bin/ld: cannot find -limage: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int mallopt();
+int t(void) { mallopt(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lmalloc
+/usr/bin/ld: cannot find -lmalloc: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int pam_authenticate();
+int t(void) { pam_authenticate(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lpam
+/usr/bin/ld: cannot find -lpam: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int TLSv1_2_method();
+int t(void) { TLSv1_2_method(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lssl -lcrypto
+/usr/bin/ld: cannot find -lssl: No such file or directory
+/usr/bin/ld: cannot find -lcrypto: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int jbg_enc_init();
+int t(void) { jbg_enc_init(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -ljbig
++ cat t.c++
+#include "jbig.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/jbig.h" 1 3 4
+# 10 "/usr/include/jbig.h" 3 4
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+
+# 143 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long int ptrdiff_t;
+# 209 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef long unsigned int size_t;
+# 415 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+typedef struct {
+  long long __max_align_ll __attribute__((__aligned__(__alignof__(long long))));
+  long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
+# 426 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 3 4
+} max_align_t;
+
+
+
+
+
+
+  typedef decltype(nullptr) nullptr_t;
+# 11 "/usr/include/jbig.h" 2 3 4
+# 1 "/usr/include/jbig_ar.h" 1 3 4
+# 15 "/usr/include/jbig_ar.h" 3 4
+struct jbg_arenc_state {
+  unsigned char st[4096];
+  unsigned long c;
+
+  unsigned long a;
+  long sc;
+  int ct;
+  int buffer;
+  void (*byte_out)(int, void *);
+  void *file;
+};
+
+
+
+
+
+struct jbg_ardec_state {
+  unsigned char st[4096];
+  unsigned long c;
+
+  unsigned long a;
+  unsigned char *pscd_ptr;
+  unsigned char *pscd_end;
+  int ct;
+
+  int startup;
+  int nopadding;
+
+
+
+};
+
+void arith_encode_init(struct jbg_arenc_state *s, int reuse_st);
+void arith_encode_flush(struct jbg_arenc_state *s);
+void arith_encode(struct jbg_arenc_state *s, int cx, int pix);
+void arith_decode_init(struct jbg_ardec_state *s, int reuse_st);
+int arith_decode(struct jbg_ardec_state *s, int cx);
+# 12 "/usr/include/jbig.h" 2 3 4
+# 37 "/usr/include/jbig.h" 3 4
+struct jbg_buf {
+  unsigned char d[4000];
+  int len;
+  struct jbg_buf *next;
+  struct jbg_buf *previous;
+
+  struct jbg_buf *last;
+  struct jbg_buf **free_list;
+};
+# 98 "/usr/include/jbig.h" 3 4
+struct jbg_enc_state {
+  int d;
+  unsigned long xd, yd;
+  unsigned long yd1;
+
+  int planes;
+  int dl;
+  int dh;
+  unsigned long l0;
+
+  unsigned long stripes;
+  unsigned char **lhp[2];
+  int *highres;
+  int order;
+  int options;
+  unsigned mx, my;
+  int *tx;
+  char *dppriv;
+  char *res_tab;
+  struct jbg_buf ****sde;
+
+  struct jbg_arenc_state *s;
+  struct jbg_buf *free_list;
+  void (*data_out)(unsigned char *start, size_t len, void *file);
+
+  void *file;
+  char *tp;
+  unsigned char *comment;
+
+
+  unsigned long comment_len;
+};
+
+
+
+
+
+
+struct jbg_dec_state {
+
+  int d;
+  int dl;
+  unsigned long xd, yd;
+  int planes;
+  unsigned long l0;
+
+  unsigned long stripes;
+  int order;
+  int options;
+  int mx, my;
+  char *dppriv;
+
+
+  unsigned long ii[3];
+
+
+
+
+
+  unsigned char **lhp[2];
+
+
+  int **tx, **ty;
+  struct jbg_ardec_state **s;
+
+  int **reset;
+
+  unsigned long bie_len;
+  unsigned char buffer[20];
+  int buf_len;
+  unsigned long comment_skip;
+  unsigned long x;
+  unsigned long i;
+  int at_moves;
+  unsigned long at_line[64];
+
+  int at_tx[64], at_ty[64];
+
+  unsigned long line_h1, line_h2, line_h3;
+  unsigned long line_l1, line_l2, line_l3;
+  int pseudo;
+  int **lntp;
+
+  unsigned long xmax, ymax;
+
+  int dmax;
+};
+# 194 "/usr/include/jbig.h" 3 4
+void jbg_enc_init(struct jbg_enc_state *s, unsigned long x, unsigned long y,
+    int planes, unsigned char **p,
+    void (*data_out)(unsigned char *start, size_t len,
+       void *file),
+    void *file);
+int jbg_enc_lrlmax(struct jbg_enc_state *s, unsigned long mwidth,
+     unsigned long mheight);
+void jbg_enc_layers(struct jbg_enc_state *s, int d);
+int jbg_enc_lrange(struct jbg_enc_state *s, int dl, int dh);
+void jbg_enc_options(struct jbg_enc_state *s, int order, int options,
+       unsigned long l0, int mx, int my);
+void jbg_enc_out(struct jbg_enc_state *s);
+void jbg_enc_free(struct jbg_enc_state *s);
+
+void jbg_dec_init(struct jbg_dec_state *s);
+void jbg_dec_maxsize(struct jbg_dec_state *s, unsigned long xmax,
+       unsigned long ymax);
+int jbg_dec_in(struct jbg_dec_state *s, unsigned char *data, size_t len,
+  size_t *cnt);
+unsigned long jbg_dec_getwidth(const struct jbg_dec_state *s);
+unsigned long jbg_dec_getheight(const struct jbg_dec_state *s);
+unsigned char *jbg_dec_getimage(const struct jbg_dec_state *s, int plane);
+unsigned long jbg_dec_getsize(const struct jbg_dec_state *s);
+void jbg_dec_merge_planes(const struct jbg_dec_state *s, int use_graycode,
+     void (*data_out)(unsigned char *start, size_t len,
+        void *file), void *file);
+unsigned long jbg_dec_getsize_merged(const struct jbg_dec_state *s);
+void jbg_dec_free(struct jbg_dec_state *s);
+
+const char *jbg_strerror(int errnum);
+void jbg_int2dppriv(unsigned char *dptable, const char *internal);
+void jbg_dppriv2int(char *internal, const unsigned char *dptable);
+unsigned long jbg_ceil_half(unsigned long x, int n);
+void jbg_split_planes(unsigned long x, unsigned long y, int has_planes,
+        int encode_planes,
+        const unsigned char *src, unsigned char **dest,
+        int use_graycode);
+int jbg_newlen(unsigned char *bie, size_t len);
+# 2 "t.c++" 2
++ cat t.c
+extern int jpeg_std_error();
+int t(void) { jpeg_std_error(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -ljpeg
++ cat t.c++
+#include "jpeglib.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/jpeglib.h" 1 3 4
+# 29 "/usr/include/jpeglib.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/jconfig.h" 1 3 4
+# 30 "/usr/include/jpeglib.h" 2 3 4
+
+# 1 "/usr/include/jmorecfg.h" 1 3 4
+# 48 "/usr/include/jmorecfg.h" 3 4
+
+# 48 "/usr/include/jmorecfg.h" 3 4
+typedef unsigned char JSAMPLE;
+# 77 "/usr/include/jmorecfg.h" 3 4
+typedef short JCOEF;
+# 86 "/usr/include/jmorecfg.h" 3 4
+typedef unsigned char JOCTET;
+# 99 "/usr/include/jmorecfg.h" 3 4
+typedef unsigned char UINT8;
+
+
+
+
+typedef unsigned short UINT16;
+
+
+
+
+
+
+
+typedef short INT16;
+# 144 "/usr/include/jmorecfg.h" 3 4
+typedef long INT32;
+# 159 "/usr/include/jmorecfg.h" 3 4
+typedef unsigned int JDIMENSION;
+# 207 "/usr/include/jmorecfg.h" 3 4
+typedef int boolean;
+# 32 "/usr/include/jpeglib.h" 2 3 4
+
+
+
+
+extern "C" {
+# 69 "/usr/include/jpeglib.h" 3 4
+typedef JSAMPLE *JSAMPROW;
+typedef JSAMPROW *JSAMPARRAY;
+typedef JSAMPARRAY *JSAMPIMAGE;
+
+typedef JCOEF JBLOCK[64];
+typedef JBLOCK *JBLOCKROW;
+typedef JBLOCKROW *JBLOCKARRAY;
+typedef JBLOCKARRAY *JBLOCKIMAGE;
+
+typedef JCOEF *JCOEFPTR;
+
+
+
+
+
+
+
+typedef struct {
+
+
+
+
+  UINT16 quantval[64];
+
+
+
+
+
+  boolean sent_table;
+} JQUANT_TBL;
+
+
+
+
+typedef struct {
+
+  UINT8 bits[17];
+
+  UINT8 huffval[256];
+
+
+
+
+
+  boolean sent_table;
+} JHUFF_TBL;
+
+
+
+
+typedef struct {
+
+
+
+  int component_id;
+  int component_index;
+  int h_samp_factor;
+  int v_samp_factor;
+  int quant_tbl_no;
+
+
+
+
+  int dc_tbl_no;
+  int ac_tbl_no;
+# 142 "/usr/include/jpeglib.h" 3 4
+  JDIMENSION width_in_blocks;
+  JDIMENSION height_in_blocks;
+
+
+
+
+
+
+
+  int DCT_h_scaled_size;
+  int DCT_v_scaled_size;
+# 162 "/usr/include/jpeglib.h" 3 4
+  JDIMENSION downsampled_width;
+  JDIMENSION downsampled_height;
+
+
+
+
+  boolean component_needed;
+
+
+
+  int MCU_width;
+  int MCU_height;
+  int MCU_blocks;
+  int MCU_sample_width;
+  int last_col_width;
+  int last_row_height;
+
+
+
+
+
+  JQUANT_TBL *quant_table;
+
+
+  void *dct_table;
+} jpeg_component_info;
+
+
+
+
+typedef struct {
+  int comps_in_scan;
+  int component_index[4];
+  int Ss, Se;
+  int Ah, Al;
+} jpeg_scan_info;
+
+
+
+typedef struct jpeg_marker_struct *jpeg_saved_marker_ptr;
+
+struct jpeg_marker_struct {
+  jpeg_saved_marker_ptr next;
+  UINT8 marker;
+  unsigned int original_length;
+  unsigned int data_length;
+  JOCTET *data;
+
+};
+
+
+
+
+
+
+typedef enum {
+  JCS_UNKNOWN,
+  JCS_GRAYSCALE,
+  JCS_RGB,
+
+  JCS_YCbCr,
+  JCS_CMYK,
+  JCS_YCCK,
+  JCS_EXT_RGB,
+  JCS_EXT_RGBX,
+  JCS_EXT_BGR,
+  JCS_EXT_BGRX,
+  JCS_EXT_XBGR,
+  JCS_EXT_XRGB,
+
+
+
+
+
+
+  JCS_EXT_RGBA,
+  JCS_EXT_BGRA,
+  JCS_EXT_ABGR,
+  JCS_EXT_ARGB,
+  JCS_RGB565
+} J_COLOR_SPACE;
+
+
+
+typedef enum {
+  JDCT_ISLOW,
+  JDCT_IFAST,
+  JDCT_FLOAT
+} J_DCT_METHOD;
+# 261 "/usr/include/jpeglib.h" 3 4
+typedef enum {
+  JDITHER_NONE,
+  JDITHER_ORDERED,
+  JDITHER_FS
+} J_DITHER_MODE;
+# 282 "/usr/include/jpeglib.h" 3 4
+struct jpeg_common_struct {
+  struct jpeg_error_mgr *err; struct jpeg_memory_mgr *mem; struct jpeg_progress_mgr *progress; void *client_data; boolean is_decompressor; int global_state;
+
+
+
+
+};
+
+typedef struct jpeg_common_struct *j_common_ptr;
+typedef struct jpeg_compress_struct *j_compress_ptr;
+typedef struct jpeg_decompress_struct *j_decompress_ptr;
+
+
+
+
+struct jpeg_compress_struct {
+  struct jpeg_error_mgr *err; struct jpeg_memory_mgr *mem; struct jpeg_progress_mgr *progress; void *client_data; boolean is_decompressor; int global_state;
+
+
+  struct jpeg_destination_mgr *dest;
+
+
+
+
+
+
+  JDIMENSION image_width;
+  JDIMENSION image_height;
+  int input_components;
+  J_COLOR_SPACE in_color_space;
+
+  double input_gamma;
+# 324 "/usr/include/jpeglib.h" 3 4
+  unsigned int scale_num, scale_denom;
+
+  JDIMENSION jpeg_width;
+  JDIMENSION jpeg_height;
+# 336 "/usr/include/jpeglib.h" 3 4
+  int data_precision;
+
+  int num_components;
+  J_COLOR_SPACE jpeg_color_space;
+
+  jpeg_component_info *comp_info;
+
+
+  JQUANT_TBL *quant_tbl_ptrs[4];
+
+  int q_scale_factor[4];
+
+
+
+
+
+  JHUFF_TBL *dc_huff_tbl_ptrs[4];
+  JHUFF_TBL *ac_huff_tbl_ptrs[4];
+
+
+  UINT8 arith_dc_L[16];
+  UINT8 arith_dc_U[16];
+  UINT8 arith_ac_K[16];
+
+  int num_scans;
+  const jpeg_scan_info *scan_info;
+
+
+
+
+
+  boolean raw_data_in;
+  boolean arith_code;
+  boolean optimize_coding;
+  boolean CCIR601_sampling;
+
+  boolean do_fancy_downsampling;
+
+  int smoothing_factor;
+  J_DCT_METHOD dct_method;
+
+
+
+
+
+
+  unsigned int restart_interval;
+  int restart_in_rows;
+
+
+
+  boolean write_JFIF_header;
+  UINT8 JFIF_major_version;
+  UINT8 JFIF_minor_version;
+
+
+
+
+  UINT8 density_unit;
+  UINT16 X_density;
+  UINT16 Y_density;
+  boolean write_Adobe_marker;
+
+
+
+
+
+
+  JDIMENSION next_scanline;
+# 413 "/usr/include/jpeglib.h" 3 4
+  boolean progressive_mode;
+  int max_h_samp_factor;
+  int max_v_samp_factor;
+
+
+  int min_DCT_h_scaled_size;
+  int min_DCT_v_scaled_size;
+
+
+  JDIMENSION total_iMCU_rows;
+# 433 "/usr/include/jpeglib.h" 3 4
+  int comps_in_scan;
+  jpeg_component_info *cur_comp_info[4];
+
+
+  JDIMENSION MCUs_per_row;
+  JDIMENSION MCU_rows_in_scan;
+
+  int blocks_in_MCU;
+  int MCU_membership[10];
+
+
+
+  int Ss, Se, Ah, Al;
+
+
+  int block_size;
+  const int *natural_order;
+  int lim_Se;
+
+
+
+
+
+  struct jpeg_comp_master *master;
+  struct jpeg_c_main_controller *main;
+  struct jpeg_c_prep_controller *prep;
+  struct jpeg_c_coef_controller *coef;
+  struct jpeg_marker_writer *marker;
+  struct jpeg_color_converter *cconvert;
+  struct jpeg_downsampler *downsample;
+  struct jpeg_forward_dct *fdct;
+  struct jpeg_entropy_encoder *entropy;
+  jpeg_scan_info *script_space;
+  int script_space_size;
+};
+
+
+
+
+struct jpeg_decompress_struct {
+  struct jpeg_error_mgr *err; struct jpeg_memory_mgr *mem; struct jpeg_progress_mgr *progress; void *client_data; boolean is_decompressor; int global_state;
+
+
+  struct jpeg_source_mgr *src;
+
+
+
+
+  JDIMENSION image_width;
+  JDIMENSION image_height;
+  int num_components;
+  J_COLOR_SPACE jpeg_color_space;
+
+
+
+
+
+
+  J_COLOR_SPACE out_color_space;
+
+  unsigned int scale_num, scale_denom;
+
+  double output_gamma;
+
+  boolean buffered_image;
+  boolean raw_data_out;
+
+  J_DCT_METHOD dct_method;
+  boolean do_fancy_upsampling;
+  boolean do_block_smoothing;
+
+  boolean quantize_colors;
+
+  J_DITHER_MODE dither_mode;
+  boolean two_pass_quantize;
+  int desired_number_of_colors;
+
+  boolean enable_1pass_quant;
+  boolean enable_external_quant;
+  boolean enable_2pass_quant;
+
+
+
+
+
+
+
+  JDIMENSION output_width;
+  JDIMENSION output_height;
+  int out_color_components;
+  int output_components;
+
+
+
+  int rec_outbuf_height;
+# 539 "/usr/include/jpeglib.h" 3 4
+  int actual_number_of_colors;
+  JSAMPARRAY colormap;
+# 550 "/usr/include/jpeglib.h" 3 4
+  JDIMENSION output_scanline;
+
+
+
+
+  int input_scan_number;
+  JDIMENSION input_iMCU_row;
+
+
+
+
+
+  int output_scan_number;
+  JDIMENSION output_iMCU_row;
+# 572 "/usr/include/jpeglib.h" 3 4
+  int (*coef_bits)[64];
+# 583 "/usr/include/jpeglib.h" 3 4
+  JQUANT_TBL *quant_tbl_ptrs[4];
+
+
+  JHUFF_TBL *dc_huff_tbl_ptrs[4];
+  JHUFF_TBL *ac_huff_tbl_ptrs[4];
+
+
+
+
+
+
+  int data_precision;
+
+  jpeg_component_info *comp_info;
+
+
+
+  boolean is_baseline;
+
+  boolean progressive_mode;
+  boolean arith_code;
+
+  UINT8 arith_dc_L[16];
+  UINT8 arith_dc_U[16];
+  UINT8 arith_ac_K[16];
+
+  unsigned int restart_interval;
+
+
+
+
+  boolean saw_JFIF_marker;
+
+  UINT8 JFIF_major_version;
+  UINT8 JFIF_minor_version;
+  UINT8 density_unit;
+  UINT16 X_density;
+  UINT16 Y_density;
+  boolean saw_Adobe_marker;
+  UINT8 Adobe_transform;
+
+  boolean CCIR601_sampling;
+
+
+
+
+
+  jpeg_saved_marker_ptr marker_list;
+# 639 "/usr/include/jpeglib.h" 3 4
+  int max_h_samp_factor;
+  int max_v_samp_factor;
+
+
+  int min_DCT_h_scaled_size;
+  int min_DCT_v_scaled_size;
+
+
+
+
+  JDIMENSION total_iMCU_rows;
+# 658 "/usr/include/jpeglib.h" 3 4
+  JSAMPLE *sample_range_limit;
+
+
+
+
+
+
+  int comps_in_scan;
+  jpeg_component_info *cur_comp_info[4];
+
+
+  JDIMENSION MCUs_per_row;
+  JDIMENSION MCU_rows_in_scan;
+
+  int blocks_in_MCU;
+  int MCU_membership[10];
+
+
+
+  int Ss, Se, Ah, Al;
+
+
+
+
+  int block_size;
+  const int *natural_order;
+  int lim_Se;
+
+
+
+
+
+
+  int unread_marker;
+
+
+
+
+  struct jpeg_decomp_master *master;
+  struct jpeg_d_main_controller *main;
+  struct jpeg_d_coef_controller *coef;
+  struct jpeg_d_post_controller *post;
+  struct jpeg_input_controller *inputctl;
+  struct jpeg_marker_reader *marker;
+  struct jpeg_entropy_decoder *entropy;
+  struct jpeg_inverse_dct *idct;
+  struct jpeg_upsampler *upsample;
+  struct jpeg_color_deconverter *cconvert;
+  struct jpeg_color_quantizer *cquantize;
+};
+# 720 "/usr/include/jpeglib.h" 3 4
+struct jpeg_error_mgr {
+
+  void (*error_exit) (j_common_ptr cinfo);
+
+  void (*emit_message) (j_common_ptr cinfo, int msg_level);
+
+  void (*output_message) (j_common_ptr cinfo);
+
+  void (*format_message) (j_common_ptr cinfo, char *buffer);
+
+
+  void (*reset_error_mgr) (j_common_ptr cinfo);
+
+
+
+
+  int msg_code;
+
+  union {
+    int i[8];
+    char s[80];
+  } msg_parm;
+
+
+
+  int trace_level;
+
+
+
+
+
+
+
+  long num_warnings;
+# 765 "/usr/include/jpeglib.h" 3 4
+  const char * const *jpeg_message_table;
+  int last_jpeg_message;
+
+
+
+  const char * const *addon_message_table;
+  int first_addon_message;
+  int last_addon_message;
+};
+
+
+
+
+struct jpeg_progress_mgr {
+  void (*progress_monitor) (j_common_ptr cinfo);
+
+  long pass_counter;
+  long pass_limit;
+  int completed_passes;
+  int total_passes;
+};
+
+
+
+
+struct jpeg_destination_mgr {
+  JOCTET *next_output_byte;
+  size_t free_in_buffer;
+
+  void (*init_destination) (j_compress_ptr cinfo);
+  boolean (*empty_output_buffer) (j_compress_ptr cinfo);
+  void (*term_destination) (j_compress_ptr cinfo);
+};
+
+
+
+
+struct jpeg_source_mgr {
+  const JOCTET *next_input_byte;
+  size_t bytes_in_buffer;
+
+  void (*init_source) (j_decompress_ptr cinfo);
+  boolean (*fill_input_buffer) (j_decompress_ptr cinfo);
+  void (*skip_input_data) (j_decompress_ptr cinfo, long num_bytes);
+  boolean (*resync_to_restart) (j_decompress_ptr cinfo, int desired);
+  void (*term_source) (j_decompress_ptr cinfo);
+};
+# 829 "/usr/include/jpeglib.h" 3 4
+typedef struct jvirt_sarray_control *jvirt_sarray_ptr;
+typedef struct jvirt_barray_control *jvirt_barray_ptr;
+
+
+struct jpeg_memory_mgr {
+
+  void *(*alloc_small) (j_common_ptr cinfo, int pool_id, size_t sizeofobject);
+  void *(*alloc_large) (j_common_ptr cinfo, int pool_id,
+                        size_t sizeofobject);
+  JSAMPARRAY (*alloc_sarray) (j_common_ptr cinfo, int pool_id,
+                              JDIMENSION samplesperrow, JDIMENSION numrows);
+  JBLOCKARRAY (*alloc_barray) (j_common_ptr cinfo, int pool_id,
+                               JDIMENSION blocksperrow, JDIMENSION numrows);
+  jvirt_sarray_ptr (*request_virt_sarray) (j_common_ptr cinfo, int pool_id,
+                                           boolean pre_zero,
+                                           JDIMENSION samplesperrow,
+                                           JDIMENSION numrows,
+                                           JDIMENSION maxaccess);
+  jvirt_barray_ptr (*request_virt_barray) (j_common_ptr cinfo, int pool_id,
+                                           boolean pre_zero,
+                                           JDIMENSION blocksperrow,
+                                           JDIMENSION numrows,
+                                           JDIMENSION maxaccess);
+  void (*realize_virt_arrays) (j_common_ptr cinfo);
+  JSAMPARRAY (*access_virt_sarray) (j_common_ptr cinfo, jvirt_sarray_ptr ptr,
+                                    JDIMENSION start_row, JDIMENSION num_rows,
+                                    boolean writable);
+  JBLOCKARRAY (*access_virt_barray) (j_common_ptr cinfo, jvirt_barray_ptr ptr,
+                                     JDIMENSION start_row, JDIMENSION num_rows,
+                                     boolean writable);
+  void (*free_pool) (j_common_ptr cinfo, int pool_id);
+  void (*self_destruct) (j_common_ptr cinfo);
+
+
+
+
+
+
+  long max_memory_to_use;
+
+
+  long max_alloc_chunk;
+};
+
+
+
+
+
+typedef boolean (*jpeg_marker_parser_method) (j_decompress_ptr cinfo);
+# 891 "/usr/include/jpeglib.h" 3 4
+extern struct jpeg_error_mgr * jpeg_std_error(struct jpeg_error_mgr *err);
+# 906 "/usr/include/jpeglib.h" 3 4
+extern void jpeg_CreateCompress(j_compress_ptr cinfo, int version,
+                                 size_t structsize);
+extern void jpeg_CreateDecompress(j_decompress_ptr cinfo, int version,
+                                   size_t structsize);
+
+extern void jpeg_destroy_compress(j_compress_ptr cinfo);
+extern void jpeg_destroy_decompress(j_decompress_ptr cinfo);
+
+
+
+extern void jpeg_stdio_dest(j_compress_ptr cinfo, FILE *outfile);
+extern void jpeg_stdio_src(j_decompress_ptr cinfo, FILE *infile);
+
+
+
+extern void jpeg_mem_dest(j_compress_ptr cinfo, unsigned char **outbuffer,
+                           unsigned long *outsize);
+extern void jpeg_mem_src(j_decompress_ptr cinfo,
+                          const unsigned char *inbuffer, unsigned long insize);
+
+
+
+extern void jpeg_set_defaults(j_compress_ptr cinfo);
+
+extern void jpeg_set_colorspace(j_compress_ptr cinfo,
+                                 J_COLOR_SPACE colorspace);
+extern void jpeg_default_colorspace(j_compress_ptr cinfo);
+extern void jpeg_set_quality(j_compress_ptr cinfo, int quality,
+                              boolean force_baseline);
+extern void jpeg_set_linear_quality(j_compress_ptr cinfo, int scale_factor,
+                                     boolean force_baseline);
+
+extern void jpeg_default_qtables(j_compress_ptr cinfo,
+                                  boolean force_baseline);
+
+extern void jpeg_add_quant_table(j_compress_ptr cinfo, int which_tbl,
+                                  const unsigned int *basic_table,
+                                  int scale_factor, boolean force_baseline);
+extern int jpeg_quality_scaling(int quality);
+extern void jpeg_simple_progression(j_compress_ptr cinfo);
+extern void jpeg_suppress_tables(j_compress_ptr cinfo, boolean suppress);
+extern JQUANT_TBL * jpeg_alloc_quant_table(j_common_ptr cinfo);
+extern JHUFF_TBL * jpeg_alloc_huff_table(j_common_ptr cinfo);
+
+
+extern void jpeg_start_compress(j_compress_ptr cinfo,
+                                 boolean write_all_tables);
+extern JDIMENSION jpeg_write_scanlines(j_compress_ptr cinfo,
+                                        JSAMPARRAY scanlines,
+                                        JDIMENSION num_lines);
+extern void jpeg_finish_compress(j_compress_ptr cinfo);
+
+
+
+extern void jpeg_calc_jpeg_dimensions(j_compress_ptr cinfo);
+
+
+
+extern JDIMENSION jpeg_write_raw_data(j_compress_ptr cinfo, JSAMPIMAGE data,
+                                       JDIMENSION num_lines);
+
+
+extern void jpeg_write_marker(j_compress_ptr cinfo, int marker,
+                               const JOCTET *dataptr, unsigned int datalen);
+
+extern void jpeg_write_m_header(j_compress_ptr cinfo, int marker,
+                                 unsigned int datalen);
+extern void jpeg_write_m_byte(j_compress_ptr cinfo, int val);
+
+
+extern void jpeg_write_tables(j_compress_ptr cinfo);
+
+
+extern void jpeg_write_icc_profile(j_compress_ptr cinfo,
+                                    const JOCTET *icc_data_ptr,
+                                    unsigned int icc_data_len);
+
+
+
+extern int jpeg_read_header(j_decompress_ptr cinfo, boolean require_image);
+# 997 "/usr/include/jpeglib.h" 3 4
+extern boolean jpeg_start_decompress(j_decompress_ptr cinfo);
+extern JDIMENSION jpeg_read_scanlines(j_decompress_ptr cinfo,
+                                       JSAMPARRAY scanlines,
+                                       JDIMENSION max_lines);
+extern JDIMENSION jpeg_skip_scanlines(j_decompress_ptr cinfo,
+                                       JDIMENSION num_lines);
+extern void jpeg_crop_scanline(j_decompress_ptr cinfo, JDIMENSION *xoffset,
+                                JDIMENSION *width);
+extern boolean jpeg_finish_decompress(j_decompress_ptr cinfo);
+
+
+extern JDIMENSION jpeg_read_raw_data(j_decompress_ptr cinfo, JSAMPIMAGE data,
+                                      JDIMENSION max_lines);
+
+
+extern boolean jpeg_has_multiple_scans(j_decompress_ptr cinfo);
+extern boolean jpeg_start_output(j_decompress_ptr cinfo, int scan_number);
+extern boolean jpeg_finish_output(j_decompress_ptr cinfo);
+extern boolean jpeg_input_complete(j_decompress_ptr cinfo);
+extern void jpeg_new_colormap(j_decompress_ptr cinfo);
+extern int jpeg_consume_input(j_decompress_ptr cinfo);
+# 1027 "/usr/include/jpeglib.h" 3 4
+extern void jpeg_core_output_dimensions(j_decompress_ptr cinfo);
+
+extern void jpeg_calc_output_dimensions(j_decompress_ptr cinfo);
+
+
+extern void jpeg_save_markers(j_decompress_ptr cinfo, int marker_code,
+                               unsigned int length_limit);
+
+
+extern void jpeg_set_marker_processor(j_decompress_ptr cinfo,
+                                       int marker_code,
+                                       jpeg_marker_parser_method routine);
+
+
+extern jvirt_barray_ptr * jpeg_read_coefficients(j_decompress_ptr cinfo);
+extern void jpeg_write_coefficients(j_compress_ptr cinfo,
+                                     jvirt_barray_ptr *coef_arrays);
+extern void jpeg_copy_critical_parameters(j_decompress_ptr srcinfo,
+                                           j_compress_ptr dstinfo);
+
+
+
+
+
+
+
+extern void jpeg_abort_compress(j_compress_ptr cinfo);
+extern void jpeg_abort_decompress(j_decompress_ptr cinfo);
+
+
+
+
+extern void jpeg_abort(j_common_ptr cinfo);
+extern void jpeg_destroy(j_common_ptr cinfo);
+
+
+extern boolean jpeg_resync_to_restart(j_decompress_ptr cinfo, int desired);
+
+
+extern boolean jpeg_read_icc_profile(j_decompress_ptr cinfo,
+                                      JOCTET **icc_data_ptr,
+                                      unsigned int *icc_data_len);
+# 1128 "/usr/include/jpeglib.h" 3 4
+}
+# 2 "t.c++" 2
++ cat t.c
+extern int cmsOpenProfileFromMem();
+int t(void) { cmsOpenProfileFromMem(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -llcms2
+/usr/bin/ld: cannot find -llcms2: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int cmsOpenProfileFromMem();
+int t(void) { cmsOpenProfileFromMem(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -llcms
+/usr/bin/ld: cannot find -llcms: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int ldap_initialize();
+int t(void) { ldap_initialize(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lldap
+/usr/bin/ld: cannot find -lldap: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int crypt();
+int t(void) { crypt(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+/usr/bin/ld: /tmp/ccL94voP.o: in function `t':
+/root/hylafax-7.0.6/t.c:2: undefined reference to `crypt'
+/usr/bin/ld: /root/hylafax-7.0.6/t.c:2: undefined reference to `crypt'
+collect2: error: ld returned 1 exit status
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+extern int crypt();
+int t(void) { crypt(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lcrypt
++ cat t.c
+#include <time.h>
+int t(void) { strftime((void*)0, 0, (void*)0, (void*)0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: argument 3 null where non-null expected [-Wnonnull]
+    2 | int t(void) { strftime((void*)0, 0, (void*)0, (void*)0); return 0; }
+      |               ^~~~~~~~
+In file included from t.c:1:
+/usr/include/time.h:100:15: note: in a call to function 'strftime' declared 'nonnull'
+  100 | extern size_t strftime (char *__restrict __s, size_t __maxsize,
+      |               ^~~~~~~~
+t.c:2:1: warning: too many arguments for format [-Wformat-extra-args]
+    2 | int t(void) { strftime((void*)0, 0, (void*)0, (void*)0); return 0; }
+      | ^~~
++ cat t.c
+extern int socket();
+int t(void) { socket(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+extern int inet_aton();
+int t(void) { inet_aton(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+extern int logwtmp();
+int t(void) { logwtmp(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lutil
++ cat t.c
+extern int ftruncate();
+int t(void) { ftruncate(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+extern int flock();
+int t(void) { flock(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+extern int openlog();
+int t(void) { openlog(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+extern int pututxline();
+int t(void) { pututxline(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+#include <string.h>
+int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+      |               ^~~~~~~
+In file included from /usr/include/features.h:486,
+                 from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/string.h:26,
+                 from t.c:1:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:34:1: note: in a call to function 'memmove' declared 'nonnull'
+   34 | __NTH (memmove (void *__dest, const void *__src, size_t __len))
+      | ^~~~~
+t.c:2:15: warning: argument 2 null where non-null expected [-Wnonnull]
+    2 | int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+      |               ^~~~~~~
+In file included from /usr/include/features.h:486,
+                 from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/string.h:26,
+                 from t.c:1:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:34:1: note: in a call to function 'memmove' declared 'nonnull'
+   34 | __NTH (memmove (void *__dest, const void *__src, size_t __len))
+      | ^~~~~
++ cat t.c
+#include <string.h>
+int t(void) { strdup((void*)0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | int t(void) { strdup((void*)0); return 0; }
+      |               ^~~~~~
+In file included from t.c:1:
+/usr/include/string.h:187:14: note: in a call to function 'strdup' declared 'nonnull'
+  187 | extern char *strdup (const char *__s)
+      |              ^~~~~~
+t.c:2:15: warning: ignoring return value of 'strdup' declared with attribute 'warn_unused_result' [-Wunused-result]
+    2 | int t(void) { strdup((void*)0); return 0; }
+      |               ^~~~~~~~~~~~~~~~
++ cat t.c
+#include <string.h>
+int t(void) { strtoul(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: implicit declaration of function 'strtoul'; did you mean 'strtok'? [-Wimplicit-function-declaration]
+    2 | int t(void) { strtoul(); return 0; }
+      |               ^~~~~~~
+      |               strtok
++ cat t.c
+#include <string.h>
+int t(void) { strerror(0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
++ cat t.c
+#include <string.h>
+int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+      |               ^~~~~~~
+In file included from /usr/include/features.h:486,
+                 from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/string.h:26,
+                 from t.c:1:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:34:1: note: in a call to function 'memmove' declared 'nonnull'
+   34 | __NTH (memmove (void *__dest, const void *__src, size_t __len))
+      | ^~~~~
+t.c:2:15: warning: argument 2 null where non-null expected [-Wnonnull]
+    2 | int t(void) { memmove((void*)0, (void*)0, 0); return 0; }
+      |               ^~~~~~~
+In file included from /usr/include/features.h:486,
+                 from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/string.h:26,
+                 from t.c:1:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:34:1: note: in a call to function 'memmove' declared 'nonnull'
+   34 | __NTH (memmove (void *__dest, const void *__src, size_t __len))
+      | ^~~~~
++ cat t.c
+#include <string.h>
+int t(void) { random(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lc
+t.c: In function 't':
+t.c:2:15: warning: implicit declaration of function 'random' [-Wimplicit-function-declaration]
+    2 | int t(void) { random(); return 0; }
+      |               ^~~~~~
++ cat t.c
+#include <math.h>
+int t(void) { floor(0); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lm
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/termios.h" 1 3 4
+# 25 "/usr/include/termios.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 26 "/usr/include/termios.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+
+# 31 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+typedef unsigned char __u_char;
+typedef unsigned short int __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long int __u_long;
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef signed short int __int16_t;
+typedef unsigned short int __uint16_t;
+typedef signed int __int32_t;
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+typedef unsigned long int __uint64_t;
+
+
+
+
+
+
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
+
+
+
+typedef long int __quad_t;
+typedef unsigned long int __u_quad_t;
+
+
+
+
+
+
+
+typedef long int __intmax_t;
+typedef unsigned long int __uintmax_t;
+# 141 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/typesizes.h" 1 3 4
+# 142 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/time64.h" 1 3 4
+# 143 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned long int __dev_t;
+typedef unsigned int __uid_t;
+typedef unsigned int __gid_t;
+typedef unsigned long int __ino_t;
+typedef unsigned long int __ino64_t;
+typedef unsigned int __mode_t;
+typedef unsigned long int __nlink_t;
+typedef long int __off_t;
+typedef long int __off64_t;
+typedef int __pid_t;
+typedef struct { int __val[2]; } __fsid_t;
+typedef long int __clock_t;
+typedef unsigned long int __rlim_t;
+typedef unsigned long int __rlim64_t;
+typedef unsigned int __id_t;
+typedef long int __time_t;
+typedef unsigned int __useconds_t;
+typedef long int __suseconds_t;
+typedef long int __suseconds64_t;
+
+typedef int __daddr_t;
+typedef int __key_t;
+
+
+typedef int __clockid_t;
+
+
+typedef void * __timer_t;
+
+
+typedef long int __blksize_t;
+
+
+
+
+typedef long int __blkcnt_t;
+typedef long int __blkcnt64_t;
+
+
+typedef unsigned long int __fsblkcnt_t;
+typedef unsigned long int __fsblkcnt64_t;
+
+
+typedef unsigned long int __fsfilcnt_t;
+typedef unsigned long int __fsfilcnt64_t;
+
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+
+
+typedef __off64_t __loff_t;
+typedef char *__caddr_t;
+
+
+typedef long int __intptr_t;
+
+
+typedef unsigned int __socklen_t;
+
+
+
+
+typedef int __sig_atomic_t;
+# 29 "/usr/include/termios.h" 2 3 4
+
+typedef __pid_t pid_t;
+
+
+
+
+extern "C" {
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/bits/termios.h" 3 4
+typedef unsigned char cc_t;
+typedef unsigned int speed_t;
+typedef unsigned int tcflag_t;
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-struct.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/termios-struct.h" 3 4
+struct termios
+  {
+    tcflag_t c_iflag;
+    tcflag_t c_oflag;
+    tcflag_t c_cflag;
+    tcflag_t c_lflag;
+    cc_t c_line;
+    cc_t c_cc[32];
+    speed_t c_ispeed;
+    speed_t c_ospeed;
+
+
+  };
+# 28 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-c_cc.h" 1 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h" 1 3 4
+# 30 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h" 1 3 4
+# 31 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 53 "/usr/include/x86_64-linux-gnu/bits/termios.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-baud.h" 1 3 4
+# 54 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h" 1 3 4
+# 56 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h" 1 3 4
+# 57 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 74 "/usr/include/x86_64-linux-gnu/bits/termios.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-tcflow.h" 1 3 4
+# 75 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/termios-misc.h" 1 3 4
+# 77 "/usr/include/x86_64-linux-gnu/bits/termios.h" 2 3 4
+# 40 "/usr/include/termios.h" 2 3 4
+# 48 "/usr/include/termios.h" 3 4
+extern speed_t cfgetospeed (const struct termios *__termios_p) noexcept (true);
+
+
+extern speed_t cfgetispeed (const struct termios *__termios_p) noexcept (true);
+
+
+extern int cfsetospeed (struct termios *__termios_p, speed_t __speed) noexcept (true);
+
+
+extern int cfsetispeed (struct termios *__termios_p, speed_t __speed) noexcept (true);
+
+
+
+extern int cfsetspeed (struct termios *__termios_p, speed_t __speed) noexcept (true);
+
+
+
+
+extern int tcgetattr (int __fd, struct termios *__termios_p) noexcept (true);
+
+
+
+extern int tcsetattr (int __fd, int __optional_actions,
+        const struct termios *__termios_p) noexcept (true);
+
+
+
+
+extern void cfmakeraw (struct termios *__termios_p) noexcept (true);
+
+
+
+extern int tcsendbreak (int __fd, int __duration) noexcept (true);
+
+
+
+
+
+extern int tcdrain (int __fd);
+
+
+
+extern int tcflush (int __fd, int __queue_selector) noexcept (true);
+
+
+
+extern int tcflow (int __fd, int __action) noexcept (true);
+
+
+
+
+extern __pid_t tcgetsid (int __fd) noexcept (true);
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/sys/ttydefaults.h" 1 3 4
+# 105 "/usr/include/termios.h" 2 3 4
+
+
+}
+# 2 "t.c++" 2
++ cat t.c++
+#include "sys/bsdtypes.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: sys/bsdtypes.h: No such file or directory
+    1 | #include "sys/bsdtypes.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "sys/types.h"
++ make -f confMakefile t
+typedef unsigned int __uid_t;
+typedef __uid_t uid_t;
++ cat t.c++
+#include "sys/types.h"
++ make -f confMakefile t
+typedef unsigned int __gid_t;
+typedef __gid_t gid_t;
++ cat t.c++
+#include "sys/types.h"
+#include "stdlib.h"
++ make -f confMakefile t
+typedef unsigned int __mode_t;
+typedef __mode_t mode_t;
++ cat t.c++
+#include "sys/types.h"
+#include "stdlib.h"
++ make -f confMakefile t
+typedef long int __off_t;
+typedef __off64_t __loff_t;
+typedef __loff_t loff_t;
+typedef __off_t off_t;
++ cat t.c++
+#include "sys/types.h"
+#include "stdlib.h"
++ make -f confMakefile t
+typedef int __pid_t;
+typedef __pid_t pid_t;
++ cat t.c++
+#include "sys/types.h"
+#include "stdlib.h"
++ make -f confMakefile t
+typedef long int __blksize_t;
+typedef long int __ssize_t;
+typedef __ssize_t ssize_t;
+typedef long unsigned int size_t;
+typedef __blksize_t blksize_t;
+  typedef long unsigned int size_t;
+extern size_t __ctype_get_mb_cur_max (void) noexcept (true) __attribute__ ((__warn_unused_result__));
+extern int strfromd (char *__dest, size_t __size, const char *__format,
+extern int strfromf (char *__dest, size_t __size, const char *__format,
+extern int strfroml (char *__dest, size_t __size, const char *__format,
+extern int strfromf32 (char *__dest, size_t __size, const char * __format,
+extern int strfromf64 (char *__dest, size_t __size, const char * __format,
+extern int strfromf128 (char *__dest, size_t __size, const char * __format,
+extern int strfromf32x (char *__dest, size_t __size, const char * __format,
+extern int strfromf64x (char *__dest, size_t __size, const char * __format,
+   size_t __statelen) noexcept (true) __attribute__ ((__nonnull__ (2)));
+   size_t __statelen,
+extern void *malloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
+extern void *calloc (size_t __nmemb, size_t __size)
+extern void *realloc (void *__ptr, size_t __size)
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+extern void *reallocarray (void *__ptr, size_t __nmemb, size_t __size)
+extern void *alloca (size_t __size) noexcept (true);
+extern void *valloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
+extern int posix_memalign (void **__memptr, size_t __alignment, size_t __size)
+extern void *aligned_alloc (size_t __alignment, size_t __size)
+        size_t __nmemb, size_t __size, __compar_fn_t __compar)
+bsearch (const void *__key, const void *__base, size_t __nmemb, size_t __size,
+  size_t __l, __u, __idx;
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
+extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+     size_t __len) noexcept (true) __attribute__ ((__nonnull__ (3, 4, 5)));
+      char *__restrict __buf, size_t __len)
+      char *__restrict __buf, size_t __len)
+extern int mblen (const char *__s, size_t __n) noexcept (true);
+     const char *__restrict __s, size_t __n) noexcept (true);
+extern size_t mbstowcs (wchar_t *__restrict __pwcs,
+   const char *__restrict __s, size_t __n) noexcept (true)
+extern size_t wcstombs (char *__restrict __s,
+   const wchar_t *__restrict __pwcs, size_t __n)
+extern int ptsname_r (int __fd, char *__buf, size_t __buflen)
+        size_t __resolvedlen) noexcept (true) __attribute__ ((__warn_unused_result__));
+extern char *__realpath_chk_warn (const char *__restrict __name, char *__restrict __resolved, size_t __resolvedlen) noexcept (true) __asm__ ("" "__realpath_chk")
+  size_t sz = __builtin_object_size (__resolved, 2 > 1);
+  if (sz == (size_t) -1)
+extern int __ptsname_r_chk (int __fd, char *__buf, size_t __buflen,
+       size_t __nreal) noexcept (true) __attribute__ ((__nonnull__ (2)))
+extern int __ptsname_r_alias (int __fd, char *__buf, size_t __buflen) noexcept (true) __asm__ ("" "ptsname_r")
+extern int __ptsname_r_chk_warn (int __fd, char *__buf, size_t __buflen, size_t __nreal) noexcept (true) __asm__ ("" "__ptsname_r_chk")
+__attribute__ ((__leaf__)) ptsname_r (int __fd, char *__buf, size_t __buflen) noexcept (true)
+extern int __wctomb_chk (char *__s, wchar_t __wchar, size_t __buflen)
+  if (__builtin_object_size (__s, 2 > 1) != (size_t) -1
+extern size_t __mbstowcs_chk (wchar_t *__restrict __dst,
+         size_t __len, size_t __dstlen) noexcept (true)
+extern size_t __mbstowcs_alias (wchar_t *__restrict __dst, const char *__restrict __src, size_t __len) noexcept (true) __asm__ ("" "mbstowcs")
+extern size_t __mbstowcs_chk_warn (wchar_t *__restrict __dst, const char *__restrict __src, size_t __len, size_t __dstlen) noexcept (true) __asm__ ("" "__mbstowcs_chk")
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) size_t
+__attribute__ ((__leaf__)) mbstowcs (wchar_t *__restrict __dst, const char *__restrict __src, size_t __len) noexcept (true)
+extern size_t __wcstombs_chk (char *__restrict __dst,
+         size_t __len, size_t __dstlen) noexcept (true)
+extern size_t __wcstombs_alias (char *__restrict __dst, const wchar_t *__restrict __src, size_t __len) noexcept (true) __asm__ ("" "wcstombs")
+extern size_t __wcstombs_chk_warn (char *__restrict __dst, const wchar_t *__restrict __src, size_t __len, size_t __dstlen) noexcept (true) __asm__ ("" "__wcstombs_chk")
+extern __inline __attribute__ ((__always_inline__)) __attribute__ ((__gnu_inline__)) __attribute__ ((__artificial__)) size_t
+__attribute__ ((__leaf__)) wcstombs (char *__restrict __dst, const wchar_t *__restrict __src, size_t __len) noexcept (true)
++ cat t.c++
+#include "sys/types.h"
+#include "stdlib.h"
++ make -f confMakefile t
+typedef unsigned long int __dev_t;
+typedef __dev_t dev_t;
++ cat t.c++
+#include "stdint.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h" 1 3 4
+# 9 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h" 3 4
+# 1 "/usr/include/stdint.h" 1 3 4
+# 26 "/usr/include/stdint.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
+# 33 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 34 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 2 3 4
+# 27 "/usr/include/stdint.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+
+# 31 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+typedef unsigned char __u_char;
+typedef unsigned short int __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long int __u_long;
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef signed short int __int16_t;
+typedef unsigned short int __uint16_t;
+typedef signed int __int32_t;
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+typedef unsigned long int __uint64_t;
+
+
+
+
+
+
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
+
+
+
+typedef long int __quad_t;
+typedef unsigned long int __u_quad_t;
+
+
+
+
+
+
+
+typedef long int __intmax_t;
+typedef unsigned long int __uintmax_t;
+# 141 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/typesizes.h" 1 3 4
+# 142 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/time64.h" 1 3 4
+# 143 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned long int __dev_t;
+typedef unsigned int __uid_t;
+typedef unsigned int __gid_t;
+typedef unsigned long int __ino_t;
+typedef unsigned long int __ino64_t;
+typedef unsigned int __mode_t;
+typedef unsigned long int __nlink_t;
+typedef long int __off_t;
+typedef long int __off64_t;
+typedef int __pid_t;
+typedef struct { int __val[2]; } __fsid_t;
+typedef long int __clock_t;
+typedef unsigned long int __rlim_t;
+typedef unsigned long int __rlim64_t;
+typedef unsigned int __id_t;
+typedef long int __time_t;
+typedef unsigned int __useconds_t;
+typedef long int __suseconds_t;
+typedef long int __suseconds64_t;
+
+typedef int __daddr_t;
+typedef int __key_t;
+
+
+typedef int __clockid_t;
+
+
+typedef void * __timer_t;
+
+
+typedef long int __blksize_t;
+
+
+
+
+typedef long int __blkcnt_t;
+typedef long int __blkcnt64_t;
+
+
+typedef unsigned long int __fsblkcnt_t;
+typedef unsigned long int __fsblkcnt64_t;
+
+
+typedef unsigned long int __fsfilcnt_t;
+typedef unsigned long int __fsfilcnt64_t;
+
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+
+
+typedef __off64_t __loff_t;
+typedef char *__caddr_t;
+
+
+typedef long int __intptr_t;
+
+
+typedef unsigned int __socklen_t;
+
+
+
+
+typedef int __sig_atomic_t;
+# 28 "/usr/include/stdint.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wchar.h" 1 3 4
+# 29 "/usr/include/stdint.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 30 "/usr/include/stdint.h" 2 3 4
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-intn.h" 3 4
+typedef __int8_t int8_t;
+typedef __int16_t int16_t;
+typedef __int32_t int32_t;
+typedef __int64_t int64_t;
+# 35 "/usr/include/stdint.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h" 3 4
+typedef __uint8_t uint8_t;
+typedef __uint16_t uint16_t;
+typedef __uint32_t uint32_t;
+typedef __uint64_t uint64_t;
+# 38 "/usr/include/stdint.h" 2 3 4
+
+
+
+
+
+typedef __int_least8_t int_least8_t;
+typedef __int_least16_t int_least16_t;
+typedef __int_least32_t int_least32_t;
+typedef __int_least64_t int_least64_t;
+
+
+typedef __uint_least8_t uint_least8_t;
+typedef __uint_least16_t uint_least16_t;
+typedef __uint_least32_t uint_least32_t;
+typedef __uint_least64_t uint_least64_t;
+
+
+
+
+
+typedef signed char int_fast8_t;
+
+typedef long int int_fast16_t;
+typedef long int int_fast32_t;
+typedef long int int_fast64_t;
+# 71 "/usr/include/stdint.h" 3 4
+typedef unsigned char uint_fast8_t;
+
+typedef unsigned long int uint_fast16_t;
+typedef unsigned long int uint_fast32_t;
+typedef unsigned long int uint_fast64_t;
+# 87 "/usr/include/stdint.h" 3 4
+typedef long int intptr_t;
+
+
+typedef unsigned long int uintptr_t;
+# 101 "/usr/include/stdint.h" 3 4
+typedef __intmax_t intmax_t;
+typedef __uintmax_t uintmax_t;
+# 10 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h" 2 3 4
+# 2 "t.c++" 2
++ cat t.c++
+#include "sys/types.h"
+#include "stdint.h"
++ make -f confMakefile t
+typedef long int __intptr_t;
+typedef long int intptr_t;
+typedef unsigned long int uintptr_t;
++ cat t.c++
+#include "osfcn.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: osfcn.h: No such file or directory
+    1 | #include "osfcn.h"
+      |          ^~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "sys/select.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 25 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+
+# 31 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+typedef unsigned char __u_char;
+typedef unsigned short int __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long int __u_long;
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef signed short int __int16_t;
+typedef unsigned short int __uint16_t;
+typedef signed int __int32_t;
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+typedef unsigned long int __uint64_t;
+
+
+
+
+
+
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
+
+
+
+typedef long int __quad_t;
+typedef unsigned long int __u_quad_t;
+
+
+
+
+
+
+
+typedef long int __intmax_t;
+typedef unsigned long int __uintmax_t;
+# 141 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/typesizes.h" 1 3 4
+# 142 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/time64.h" 1 3 4
+# 143 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned long int __dev_t;
+typedef unsigned int __uid_t;
+typedef unsigned int __gid_t;
+typedef unsigned long int __ino_t;
+typedef unsigned long int __ino64_t;
+typedef unsigned int __mode_t;
+typedef unsigned long int __nlink_t;
+typedef long int __off_t;
+typedef long int __off64_t;
+typedef int __pid_t;
+typedef struct { int __val[2]; } __fsid_t;
+typedef long int __clock_t;
+typedef unsigned long int __rlim_t;
+typedef unsigned long int __rlim64_t;
+typedef unsigned int __id_t;
+typedef long int __time_t;
+typedef unsigned int __useconds_t;
+typedef long int __suseconds_t;
+typedef long int __suseconds64_t;
+
+typedef int __daddr_t;
+typedef int __key_t;
+
+
+typedef int __clockid_t;
+
+
+typedef void * __timer_t;
+
+
+typedef long int __blksize_t;
+
+
+
+
+typedef long int __blkcnt_t;
+typedef long int __blkcnt64_t;
+
+
+typedef unsigned long int __fsblkcnt_t;
+typedef unsigned long int __fsblkcnt64_t;
+
+
+typedef unsigned long int __fsfilcnt_t;
+typedef unsigned long int __fsfilcnt64_t;
+
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+
+
+typedef __off64_t __loff_t;
+typedef char *__caddr_t;
+
+
+typedef long int __intptr_t;
+
+
+typedef unsigned int __socklen_t;
+
+
+
+
+typedef int __sig_atomic_t;
+# 28 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
+# 31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 1 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h" 1 3 4
+
+
+
+
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+# 5 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 2 3 4
+
+
+typedef __sigset_t sigset_t;
+# 34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 3 4
+typedef __time_t time_t;
+# 37 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 1 3 4
+
+
+
+
+
+
+
+struct timeval
+{
+
+
+
+
+  __time_t tv_sec;
+  __suseconds_t tv_usec;
+
+};
+# 38 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 1 3 4
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endianness.h" 1 3 4
+# 36 "/usr/include/x86_64-linux-gnu/bits/endian.h" 2 3 4
+# 7 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 2 3 4
+
+
+
+
+struct timespec
+{
+
+
+
+  __time_t tv_sec;
+
+
+
+
+  __syscall_slong_t tv_nsec;
+# 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+};
+# 40 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+typedef __suseconds_t suseconds_t;
+
+
+
+
+
+typedef long int __fd_mask;
+# 59 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef struct
+  {
+
+
+
+    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+
+
+
+
+
+  } fd_set;
+
+
+
+
+
+
+typedef __fd_mask fd_mask;
+# 91 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern "C" {
+# 102 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int select (int __nfds, fd_set *__restrict __readfds,
+     fd_set *__restrict __writefds,
+     fd_set *__restrict __exceptfds,
+     struct timeval *__restrict __timeout);
+# 127 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int pselect (int __nfds, fd_set *__restrict __readfds,
+      fd_set *__restrict __writefds,
+      fd_set *__restrict __exceptfds,
+      const struct timespec *__restrict __timeout,
+      const __sigset_t *__restrict __sigmask);
+# 150 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select2.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/select2.h" 3 4
+extern long int __fdelt_chk (long int __d);
+extern long int __fdelt_warn (long int __d)
+  __attribute__((__warning__ ("bit outside of fd_set selected")));
+# 151 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+}
+# 2 "t.c++" 2
++ cat t.c++
+#include "new"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/c++/11/new" 1 3
+# 38 "/usr/include/c++/11/new" 3
+       
+# 39 "/usr/include/c++/11/new" 3
+
+# 1 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 1 3
+# 278 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
+
+# 278 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
+namespace std
+{
+  typedef long unsigned int size_t;
+  typedef long int ptrdiff_t;
+
+
+  typedef decltype(nullptr) nullptr_t;
+
+}
+# 300 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
+namespace std
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+namespace __gnu_cxx
+{
+  inline namespace __cxx11 __attribute__((__abi_tag__ ("cxx11"))) { }
+}
+# 586 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
+# 1 "/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h" 1 3
+# 39 "/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h" 3
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 40 "/usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h" 2 3
+# 587 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 2 3
+
+
+# 1 "/usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h" 1 3
+# 590 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 2 3
+# 777 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 3
+# 1 "/usr/include/c++/11/pstl/pstl_config.h" 1 3
+# 778 "/usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h" 2 3
+# 41 "/usr/include/c++/11/new" 2 3
+# 1 "/usr/include/c++/11/bits/exception.h" 1 3
+# 34 "/usr/include/c++/11/bits/exception.h" 3
+       
+# 35 "/usr/include/c++/11/bits/exception.h" 3
+
+#pragma GCC visibility push(default)
+
+
+
+extern "C++" {
+
+namespace std
+{
+# 61 "/usr/include/c++/11/bits/exception.h" 3
+  class exception
+  {
+  public:
+    exception() noexcept { }
+    virtual ~exception() noexcept;
+
+    exception(const exception&) = default;
+    exception& operator=(const exception&) = default;
+    exception(exception&&) = default;
+    exception& operator=(exception&&) = default;
+
+
+
+
+    virtual const char*
+    what() const noexcept;
+  };
+
+
+
+}
+
+}
+
+#pragma GCC visibility pop
+# 42 "/usr/include/c++/11/new" 2 3
+
+#pragma GCC visibility push(default)
+
+extern "C++" {
+
+namespace std
+{
+
+
+
+
+
+
+  class bad_alloc : public exception
+  {
+  public:
+    bad_alloc() throw() { }
+
+
+    bad_alloc(const bad_alloc&) = default;
+    bad_alloc& operator=(const bad_alloc&) = default;
+
+
+
+
+    virtual ~bad_alloc() throw();
+
+
+    virtual const char* what() const throw();
+  };
+
+
+  class bad_array_new_length : public bad_alloc
+  {
+  public:
+    bad_array_new_length() throw() { }
+
+
+
+    virtual ~bad_array_new_length() throw();
+
+
+    virtual const char* what() const throw();
+  };
+
+
+
+  enum class align_val_t: size_t {};
+
+
+  struct nothrow_t
+  {
+
+    explicit nothrow_t() = default;
+
+  };
+
+  extern const nothrow_t nothrow;
+
+
+
+  typedef void (*new_handler)();
+
+
+
+  new_handler set_new_handler(new_handler) throw();
+
+
+
+  new_handler get_new_handler() noexcept;
+
+}
+# 126 "/usr/include/c++/11/new" 3
+[[__nodiscard__]] void* operator new(std::size_t)
+  __attribute__((__externally_visible__));
+[[__nodiscard__]] void* operator new[](std::size_t)
+  __attribute__((__externally_visible__));
+void operator delete(void*) noexcept
+  __attribute__((__externally_visible__));
+void operator delete[](void*) noexcept
+  __attribute__((__externally_visible__));
+
+void operator delete(void*, std::size_t) noexcept
+  __attribute__((__externally_visible__));
+void operator delete[](void*, std::size_t) noexcept
+  __attribute__((__externally_visible__));
+
+[[__nodiscard__]] void* operator new(std::size_t, const std::nothrow_t&) noexcept
+  __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+[[__nodiscard__]] void* operator new[](std::size_t, const std::nothrow_t&) noexcept
+  __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+void operator delete(void*, const std::nothrow_t&) noexcept
+  __attribute__((__externally_visible__));
+void operator delete[](void*, const std::nothrow_t&) noexcept
+  __attribute__((__externally_visible__));
+
+[[__nodiscard__]] void* operator new(std::size_t, std::align_val_t)
+  __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+[[__nodiscard__]] void* operator new(std::size_t, std::align_val_t, const std::nothrow_t&)
+  noexcept __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+void operator delete(void*, std::align_val_t)
+  noexcept __attribute__((__externally_visible__));
+void operator delete(void*, std::align_val_t, const std::nothrow_t&)
+  noexcept __attribute__((__externally_visible__));
+[[__nodiscard__]] void* operator new[](std::size_t, std::align_val_t)
+  __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+[[__nodiscard__]] void* operator new[](std::size_t, std::align_val_t, const std::nothrow_t&)
+  noexcept __attribute__((__externally_visible__, __alloc_size__ (1), __malloc__));
+void operator delete[](void*, std::align_val_t)
+  noexcept __attribute__((__externally_visible__));
+void operator delete[](void*, std::align_val_t, const std::nothrow_t&)
+  noexcept __attribute__((__externally_visible__));
+
+void operator delete(void*, std::size_t, std::align_val_t)
+  noexcept __attribute__((__externally_visible__));
+void operator delete[](void*, std::size_t, std::align_val_t)
+  noexcept __attribute__((__externally_visible__));
+
+
+
+
+[[__nodiscard__]] inline void* operator new(std::size_t, void* __p) noexcept
+{ return __p; }
+[[__nodiscard__]] inline void* operator new[](std::size_t, void* __p) noexcept
+{ return __p; }
+
+
+inline void operator delete (void*, void*) noexcept { }
+inline void operator delete[](void*, void*) noexcept { }
+
+}
+
+
+
+namespace std
+{
+
+
+  template<typename _Tp>
+    [[nodiscard]] constexpr _Tp*
+    launder(_Tp* __p) noexcept
+    { return __builtin_launder(__p); }
+
+
+
+
+  template<typename _Ret, typename... _Args , bool _NE>
+    void launder(_Ret (*)(_Args...) noexcept (_NE)) = delete;
+  template<typename _Ret, typename... _Args , bool _NE>
+    void launder(_Ret (*)(_Args......) noexcept (_NE)) = delete;
+
+  void launder(void*) = delete;
+  void launder(const void*) = delete;
+  void launder(volatile void*) = delete;
+  void launder(const volatile void*) = delete;
+}
+# 230 "/usr/include/c++/11/new" 3
+#pragma GCC visibility pop
+# 2 "t.c++" 2
++ cat t.c++
+#include "sys/types.h"
+#include "stdint.h"
+#include "sys/socket.h"
++ make -f confMakefile t
+typedef unsigned int __socklen_t;
+typedef __socklen_t socklen_t;
+    socklen_t msg_namelen;
+extern int bind (int __fd, const struct sockaddr * __addr, socklen_t __len)
+   socklen_t *__restrict __len) noexcept (true);
+extern int connect (int __fd, const struct sockaddr * __addr, socklen_t __len);
+   socklen_t *__restrict __len) noexcept (true);
+         socklen_t __addr_len);
+    socklen_t *__restrict __addr_len);
+         socklen_t *__restrict __optlen) noexcept (true);
+         const void *__optval, socklen_t __optlen) noexcept (true);
+     socklen_t *__restrict __addr_len);
+      socklen_t *__restrict __addr_len, int __flags);
+          socklen_t *__restrict __addr_len);
+extern ssize_t __recvfrom_alias (int __fd, void *__restrict __buf, size_t __n, int __flags, struct sockaddr *__restrict __addr, socklen_t *__restrict __addr_len) __asm__ ("" "recvfrom")
+extern ssize_t __recvfrom_chk_warn (int __fd, void *__restrict __buf, size_t __n, size_t __buflen, int __flags, struct sockaddr *__restrict __addr, socklen_t *__restrict __addr_len) __asm__ ("" "__recvfrom_chk")
+   struct sockaddr *__restrict __addr, socklen_t *__restrict __addr_len)
++ cat t.c++
+#include <sys/types.h>
+#include <signal.h>
+void sigHUP(int) {}
+void f() {
+    struct sigaction sa;
+    sa.sa_handler = (sig_t) (sigHUP);
+    (void) sigaction(SIGHUP, &sa, (struct sigaction*) 0);
+}
+int main() { f(); return 0; }
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -pedantic-errors -O  -c t.c++
++ cat t.c++
+#include <sys/types.h>
+#include <signal.h>
+void sigHUP(int) {}
+void f() { (void) signal(SIGHUP, (sig_t) (sigHUP)); }
+int main() { f(); return 0; }
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -pedantic-errors -O  -c t.c++
++ cat t.c
+#include <stdlib.h>
+extern int getpagesize(); int main(int argc, char *argv[]){getpagesize();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat m.c
+/* part of this was lifted from GNU autoconf */
+#include <sys/types.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <stdlib.h>
+#include <stdio.h>
+static void
+boom(const char* msg)
+{
+    printf("%s.\n", msg);
+    exit(1);
+}
+
+int main(int argc, char *argv[])
+{
+    const char* filename = "conftestmmap";
+    char* buf;
+    char* addr;
+    int i, fd, cc;
+
+    cc = getpagesize();
+    buf = malloc(cc);
+    for (i = 0; i < cc; ++i)
+	buf[i] = rand();
+    fd = open(filename, O_WRONLY|O_CREAT, 0666);
+    if (fd < 0)
+	boom("Cannot open test file");
+    if (write(fd, buf, cc) != cc)
+	boom("Write to test file failed");
+    close(fd);
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+	boom("Cannot reopen test file");
+    addr = (char*) mmap(0, cc, PROT_READ, MAP_SHARED, fd, 0);
+    if (addr == (char*) -1)
+	boom("Cannot mmap test file");
+    for (i = 0; i < cc; ++i)
+	if (buf[i] != addr[i])
+	    boom("Compare of mmap-file contents failed");
+    exit(0);
+}
++ make -f confMakefile m
+/usr/bin/gcc m.c  -lcrypt -lutil -lm 
+m.c: In function 'main':
+m.c:21:10: warning: implicit declaration of function 'getpagesize' [-Wimplicit-function-declaration]
+   21 |     cc = getpagesize();
+      |          ^~~~~~~~~~~
+m.c:28:9: warning: implicit declaration of function 'write'; did you mean 'fwrite'? [-Wimplicit-function-declaration]
+   28 |     if (write(fd, buf, cc) != cc)
+      |         ^~~~~
+      |         fwrite
+m.c:30:5: warning: implicit declaration of function 'close'; did you mean 'pclose'? [-Wimplicit-function-declaration]
+   30 |     close(fd);
+      |     ^~~~~
+      |     pclose
++ ./a.out
++ cat t.c++
+#include "sys/mman.h"
++ make -f confMakefile t
+extern void *mmap (void *__addr, size_t __len, int __prot,     int __flags, int __fd, __off_t __offset) noexcept (true);
++ cat t.c++
+#include "sys/mman.h"
++ make -f confMakefile t
+extern int munmap (void *__addr, size_t __len) noexcept (true);
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern void bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
+__attribute__ ((__leaf__)) bzero (void *__dest, size_t __len) noexcept (true)
+extern void explicit_bzero (void *__s, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)))
+__attribute__ ((__leaf__)) explicit_bzero (void *__dest, size_t __len) noexcept (true)
++ cat t.c++
+#include "stdlib.h"
+#include "stdio.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern int mkstemp (char *__template) __attribute__ ((__nonnull__ (1))) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern char *strerror (int __errnum) noexcept (true);
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern int strncasecmp (const char *__s1, const char *__s2, size_t __n)
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern int strcasecmp (const char *__s1, const char *__s2)
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern char *strdup (const char *__s)
++ cat t.c++
+#include "string.h"
++ make -f confMakefile t
+extern void *memset (void *__s, int __c, size_t __n) noexcept (true) __attribute__ ((__nonnull__ (1)));
+__attribute__ ((__leaf__)) memset (void *__dest, int __ch, size_t __len) noexcept (true)
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern char *getpass (const char *__prompt) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "math.h"
+#include "stdlib.h"
++ make -f confMakefile t
+extern long int random (void) noexcept (true);
+extern void srandom (unsigned int __seed) noexcept (true);
++ cat t.c++
+#include "math.h"
+#include "stdlib.h"
++ make -f confMakefile t
+extern void srandom (unsigned int __seed) noexcept (true);
++ cat t.c++
+#include "math.h"
++ make -f confMakefile t
+extern double floor (double __x) noexcept (true) __attribute__ ((__const__)); extern double __floor (double __x) noexcept (true) __attribute__ ((__const__));
+  floor(float __x)
+  floor(long double __x)
+    floor(_Tp __x)
+    { return __builtin_floor(__x); }
+          const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
+          const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
+          const int __n = std::floor(__phi / __numeric_constants<_Tp>::__pi()
+      const int __intd = std::floor(__d + _Tp(0.5L));
++ cat t.c++
+#include "sys/wait.h"
++ make -f confMakefile t
+extern __pid_t waitpid (__pid_t __pid, int *__stat_loc, int __options);
++ cat t.c
+#include <stdlib.h>
+extern int sysconf(); int main(int argc, char *argv[]){sysconf();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern long int sysconf (int __name) noexcept (true);
++ cat t.c
+#include <stdlib.h>
+extern int ulimit(); int main(int argc, char *argv[]){ulimit();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "ulimit.h"
++ make -f confMakefile t
+extern long int ulimit (int __cmd, ...) noexcept (true);
++ cat t.c
+#include <stdlib.h>
+extern int getdtablesize(); int main(int argc, char *argv[]){getdtablesize();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int getdtablesize (void) noexcept (true);
++ cat t.c
+#include "limits.h"
+#ifdef _POSIX_OPEN_MAX
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+#include "sys/types.h"
+#include "stdint.h"
+#include "sys/socket.h"
+#ifdef howmany
+FOUND
+#endif
++ make -f confMakefile t
++ cat t.c++
+#include "signal.h"
++ make -f confMakefile t
++ cat t.c++
+#include "signal.h"
++ make -f confMakefile t
+extern int sigaction (int __sig, const struct sigaction *__restrict __act,        struct sigaction *__restrict __oact) noexcept (true);
++ cat t.c++
+#include "signal.h"
++ make -f confMakefile t
+extern int kill (__pid_t __pid, int __sig) noexcept (true);
+extern int pthread_kill (pthread_t __threadid, int __signo) noexcept (true);
+extern int tgkill (__pid_t __tgid, __pid_t __tid, int __signal);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int close (int __fd);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern __uid_t getuid (void) noexcept (true);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern __uid_t geteuid (void) noexcept (true);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int seteuid (__uid_t __uid) noexcept (true) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int setegid (__gid_t __gid) noexcept (true) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern int setenv (const char *__name, const char *__value, int __replace)
+extern int unsetenv (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int ftruncate (int __fd, __off_t __length) noexcept (true) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int getdtablesize (void) noexcept (true);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int chroot (const char *__path) noexcept (true) __attribute__ ((__nonnull__ (1))) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "unistd.h"
+#include "sys/select.h"
+#include "sys/time.h"
+#include "sys/types.h"
+#include "stdint.h"
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int select (int __nfds, fd_set *__restrict __readfds,     fd_set *__restrict __writefds,     fd_set *__restrict __exceptfds,     struct timeval *__restrict __timeout);
+extern int pselect (int __nfds, fd_set *__restrict __readfds,      fd_set *__restrict __writefds,      fd_set *__restrict __exceptfds,      const struct timespec *__restrict __timeout,      const __sigset_t *__restrict __sigmask);
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int unlink (const char *__name) noexcept (true) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __attribute__ ((__warn_unused_result__))
+extern ssize_t pread (int __fd, void *__buf, size_t __nbytes,        __off_t __offset) __attribute__ ((__warn_unused_result__))
+read (int __fd, void *__buf, size_t __nbytes)
+pread (int __fd, void *__buf, size_t __nbytes, __off_t __offset)
++ cat t.c++
+#include "unistd.h"
+#include "sys/ioctl.h"
++ make -f confMakefile t
+extern int ioctl (int __fd, unsigned long int __request, ...) noexcept (true);
++ cat t.c
+#include <stdlib.h>
+extern int fchown(); int main(int argc, char *argv[]){fchown();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int fchown (int __fd, __uid_t __owner, __gid_t __group) noexcept (true) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "unistd.h"
++ make -f confMakefile t
+extern int gethostname (char *__name, size_t __len) noexcept (true) __attribute__ ((__nonnull__ (1)))
+__attribute__ ((__leaf__)) gethostname (char *__buf, size_t __buflen) noexcept (true)
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern void *malloc (size_t __size) noexcept (true) __attribute__ ((__malloc__))
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern void *realloc (void *__ptr, size_t __size)
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern void free (void *__ptr) noexcept (true);
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern unsigned long int strtoul (const char *__restrict __nptr,      char **__restrict __endptr, int __base)
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern int isatty (int __fd) noexcept (true);
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern char *optarg;
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern int opterr;
++ cat t.c++
+#include "stdlib.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern int optind;
++ cat t.c++
+#include "stdlib.h"
++ make -f confMakefile t
+extern int system (const char *__command) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "stdlib.h"
+#include "stdio.h"
+#include "unistd.h"
++ make -f confMakefile t
+extern char *mktemp (char *__template) noexcept (true) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern FILE *popen (const char *__command, const char *__modes)
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern int pclose (FILE *__stream);
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern FILE *fdopen (int __fd, const char *__modes) noexcept (true)
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern int snprintf (char *__restrict __s, size_t __maxlen,       const char *__restrict __format, ...)
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,        const char *__restrict __format, __gnuc_va_list __arg)
+__attribute__ ((__leaf__)) snprintf (char *__restrict __s, size_t __n, const char *__restrict __fmt, ...) noexcept (true)
+__attribute__ ((__leaf__)) vsnprintf (char *__restrict __s, size_t __n, const char *__restrict __fmt, __gnuc_va_list __ap) noexcept (true)
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern int vsnprintf (char *__restrict __s, size_t __maxlen,        const char *__restrict __format, __gnuc_va_list __arg)
+__attribute__ ((__leaf__)) vsnprintf (char *__restrict __s, size_t __n, const char *__restrict __fmt, __gnuc_va_list __ap) noexcept (true)
++ cat t.c
+#include "stdio.h"
+#ifdef fileno
+FOUND
+#endif
++ make -f confMakefile t
++ cat t.c++
+#include "stdio.h"
++ make -f confMakefile t
+extern int fileno (FILE *__stream) noexcept (true) __attribute__ ((__warn_unused_result__));
++ cat t.c++
+#include "dirent.h"
++ make -f confMakefile t
+extern DIR *opendir (const char *__name) __attribute__ ((__nonnull__ (1)));
+extern DIR *fdopendir (int __fd);
++ cat t.c++
+#include "syslog.h"
++ make -f confMakefile t
+extern void syslog (int __pri, const char *__fmt, ...)
+extern void vsyslog (int __pri, const char *__fmt, __gnuc_va_list __ap)
+syslog (int __pri, const char *__fmt, ...)
+vsyslog (int __pri, const char *__fmt, __gnuc_va_list __ap)
++ cat t.c++
+#include "syslog.h"
++ make -f confMakefile t
+extern void vsyslog (int __pri, const char *__fmt, __gnuc_va_list __ap)
+vsyslog (int __pri, const char *__fmt, __gnuc_va_list __ap)
++ cat t.c++
+#include "syslog.h"
++ make -f confMakefile t
+extern void closelog (void);
++ cat t.c++
+#include "syslog.h"
++ make -f confMakefile t
+extern void openlog (const char *__ident, int __option, int __facility);
++ cat t.c
+#include <stdlib.h>
+extern int fchmod(); int main(int argc, char *argv[]){fchmod();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "unistd.h"
+#include "sys/stat.h"
++ make -f confMakefile t
+extern int fchmod (int __fd, __mode_t __mode) noexcept (true);
++ cat t.c++
+#include "unistd.h"
+#include "sys/stat.h"
++ make -f confMakefile t
+extern int mknod (const char *__path, __mode_t __mode, __dev_t __dev)
++ cat t.c++
+#include "sys/time.h"
++ make -f confMakefile t
+extern int gettimeofday (struct timeval *__restrict __tv,    void *__restrict __tz) noexcept (true) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "time.h"
++ make -f confMakefile t
+extern size_t strftime (char *__restrict __s, size_t __maxsize,   const char *__restrict __format,   const struct tm *__restrict __tp) noexcept (true);
++ cat t.c++
+#include "time.h"
++ make -f confMakefile t
+extern struct tm *localtime (const time_t *__timer) noexcept (true);
++ cat t.c++
+#include <time.h>
+int main()
+{
+    struct tm x;
+    const char* cp;
+    long off;
+    cp = x.tm_zone;
+    off = x.tm_gmtoff;
+    return 0;
+}
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c++
++ cat t.c++
+#include "sys/time.h"
++ make -f confMakefile t
+extern int setitimer (__itimer_which_t __which,        const struct itimerval *__restrict __new,        struct itimerval *__restrict __old) noexcept (true);
++ cat t.c++
+#include "pwd.h"
++ make -f confMakefile t
+extern void setpwent (void);
++ cat t.c++
+#include "pwd.h"
++ make -f confMakefile t
+extern void endpwent (void);
++ cat t.c++
+#include "pwd.h"
++ make -f confMakefile t
+extern struct passwd *getpwnam (const char *__name) __attribute__ ((__nonnull__ (1)));
++ cat t.c++
+#include "ctype.h"
++ make -f confMakefile t
+extern int toupper (int __c) noexcept (true);
+extern int _toupper (int) noexcept (true);
+__attribute__ ((__leaf__)) toupper (int __c) noexcept (true)
++ cat t.c++
+#include "ctype.h"
++ make -f confMakefile t
+extern int tolower (int __c) noexcept (true);
+extern int _tolower (int) noexcept (true);
+__attribute__ ((__leaf__)) tolower (int __c) noexcept (true)
++ cat t.c++
+#include "net/errno.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: net/errno.h: No such file or directory
+    1 | #include "net/errno.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int getpeername (int __fd, struct sockaddr *__restrict __addr,   socklen_t *__restrict __len) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int getsockname (int __fd, struct sockaddr *__restrict __addr,   socklen_t *__restrict __len) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int socket (int __domain, int __type, int __protocol) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int connect (int __fd, const struct sockaddr * __addr, socklen_t __len);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int bind (int __fd, const struct sockaddr * __addr, socklen_t __len)
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int listen (int __fd, int __n) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int getsockopt (int __fd, int __level, int __optname,         void *__restrict __optval,         socklen_t *__restrict __optlen) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int setsockopt (int __fd, int __level, int __optname,         const void *__optval, socklen_t __optlen) noexcept (true);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern int accept (int __fd, struct sockaddr *__restrict __addr,     socklen_t *__restrict __addr_len);
++ cat t.c++
+#include "sys/socket.h"
++ make -f confMakefile t
+extern ssize_t send (int __fd, const void *__buf, size_t __n, int __flags);
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern void setutent (void) noexcept (true);
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern void endutent (void) noexcept (true);
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern struct utmp *getutent (void) noexcept (true);
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern struct utmp *pututline (const struct utmp *__utmp_ptr) noexcept (true);
++ cat t.c++
+#include "netdb.h"
++ make -f confMakefile t
+extern struct hostent *gethostbyname (const char *__name);
++ cat t.c++
+#include "netdb.h"
++ make -f confMakefile t
+extern struct hostent *gethostbyaddr (const void *__addr, __socklen_t __len,          int __type);
++ cat t.c++
+#include "netdb.h"
++ make -f confMakefile t
+extern struct servent *getservbyname (const char *__name, const char *__proto);
++ cat t.c
+#include "sys/file.h"
+#ifdef LOCK_SH
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c++
+#include "sys/file.h"
++ make -f confMakefile t
+extern int flock (int __fd, int __operation) noexcept (true);
++ cat t.c++
+#include "setjmp.h"
++ make -f confMakefile t
+extern int __sigsetjmp (struct __jmp_buf_tag __env[1], int __savemask) noexcept (true);
++ cat t.c++
+#include "arpa/inet.h"
++ make -f confMakefile t
+extern char *inet_ntoa (struct in_addr __in) noexcept (true);
++ cat t.c++
+#include "sys/mkdev.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: sys/mkdev.h: No such file or directory
+    1 | #include "sys/mkdev.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "locale.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/locale.h" 1 3 4
+# 25 "/usr/include/locale.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 26 "/usr/include/locale.h" 2 3 4
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h" 1 3 4
+# 29 "/usr/include/locale.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/locale.h" 1 3 4
+# 30 "/usr/include/locale.h" 2 3 4
+
+
+# 31 "/usr/include/locale.h" 3 4
+extern "C" {
+# 51 "/usr/include/locale.h" 3 4
+struct lconv
+{
+
+
+  char *decimal_point;
+  char *thousands_sep;
+
+
+
+
+
+  char *grouping;
+
+
+
+
+
+  char *int_curr_symbol;
+  char *currency_symbol;
+  char *mon_decimal_point;
+  char *mon_thousands_sep;
+  char *mon_grouping;
+  char *positive_sign;
+  char *negative_sign;
+  char int_frac_digits;
+  char frac_digits;
+
+  char p_cs_precedes;
+
+  char p_sep_by_space;
+
+  char n_cs_precedes;
+
+  char n_sep_by_space;
+
+
+
+
+
+
+  char p_sign_posn;
+  char n_sign_posn;
+
+
+  char int_p_cs_precedes;
+
+  char int_p_sep_by_space;
+
+  char int_n_cs_precedes;
+
+  char int_n_sep_by_space;
+
+
+
+
+
+
+  char int_p_sign_posn;
+  char int_n_sign_posn;
+# 118 "/usr/include/locale.h" 3 4
+};
+
+
+
+extern char *setlocale (int __category, const char *__locale) noexcept (true);
+
+
+extern struct lconv *localeconv (void) noexcept (true);
+# 135 "/usr/include/locale.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
+struct __locale_struct
+{
+
+  struct __locale_data *__locales[13];
+
+
+  const unsigned short int *__ctype_b;
+  const int *__ctype_tolower;
+  const int *__ctype_toupper;
+
+
+  const char *__names[13];
+};
+
+typedef struct __locale_struct *__locale_t;
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
+
+typedef __locale_t locale_t;
+# 136 "/usr/include/locale.h" 2 3 4
+
+
+
+
+
+extern locale_t newlocale (int __category_mask, const char *__locale,
+      locale_t __base) noexcept (true);
+# 176 "/usr/include/locale.h" 3 4
+extern locale_t duplocale (locale_t __dataset) noexcept (true);
+
+
+
+extern void freelocale (locale_t __dataset) noexcept (true);
+
+
+
+
+
+
+extern locale_t uselocale (locale_t __dataset) noexcept (true);
+
+
+
+
+
+
+
+}
+# 2 "t.c++" 2
++ cat t.c++
+#include "langinfo.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/langinfo.h" 1 3 4
+# 23 "/usr/include/langinfo.h" 3 4
+# 1 "/usr/include/nl_types.h" 1 3 4
+# 21 "/usr/include/nl_types.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 22 "/usr/include/nl_types.h" 2 3 4
+# 30 "/usr/include/nl_types.h" 3 4
+
+# 30 "/usr/include/nl_types.h" 3 4
+extern "C" {
+
+
+typedef void *nl_catd;
+
+
+typedef int nl_item;
+
+
+
+
+
+extern nl_catd catopen (const char *__cat_name, int __flag) __attribute__ ((__nonnull__ (1)));
+
+
+
+extern char *catgets (nl_catd __catalog, int __set, int __number,
+        const char *__string) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern int catclose (nl_catd __catalog) noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+}
+# 24 "/usr/include/langinfo.h" 2 3 4
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/locale.h" 1 3 4
+# 26 "/usr/include/langinfo.h" 2 3 4
+
+
+extern "C" {
+# 41 "/usr/include/langinfo.h" 3 4
+enum
+{
+
+
+
+  ABDAY_1 = (((2) << 16) | (0)),
+
+  ABDAY_2,
+
+  ABDAY_3,
+
+  ABDAY_4,
+
+  ABDAY_5,
+
+  ABDAY_6,
+
+  ABDAY_7,
+
+
+
+  DAY_1,
+
+  DAY_2,
+
+  DAY_3,
+
+  DAY_4,
+
+  DAY_5,
+
+  DAY_6,
+
+  DAY_7,
+
+
+
+
+  ABMON_1,
+
+  ABMON_2,
+
+  ABMON_3,
+
+  ABMON_4,
+
+  ABMON_5,
+
+  ABMON_6,
+
+  ABMON_7,
+
+  ABMON_8,
+
+  ABMON_9,
+
+  ABMON_10,
+
+  ABMON_11,
+
+  ABMON_12,
+
+
+
+
+  MON_1,
+
+  MON_2,
+
+  MON_3,
+
+  MON_4,
+
+  MON_5,
+
+  MON_6,
+
+  MON_7,
+
+  MON_8,
+
+  MON_9,
+
+  MON_10,
+
+  MON_11,
+
+  MON_12,
+
+
+  AM_STR,
+
+  PM_STR,
+
+
+  D_T_FMT,
+
+  D_FMT,
+
+  T_FMT,
+
+  T_FMT_AMPM,
+
+
+  ERA,
+
+  __ERA_YEAR,
+
+
+
+  ERA_D_FMT,
+
+  ALT_DIGITS,
+
+  ERA_D_T_FMT,
+
+  ERA_T_FMT,
+
+
+  _NL_TIME_ERA_NUM_ENTRIES,
+  _NL_TIME_ERA_ENTRIES,
+
+  _NL_WABDAY_1,
+  _NL_WABDAY_2,
+  _NL_WABDAY_3,
+  _NL_WABDAY_4,
+  _NL_WABDAY_5,
+  _NL_WABDAY_6,
+  _NL_WABDAY_7,
+
+
+  _NL_WDAY_1,
+  _NL_WDAY_2,
+  _NL_WDAY_3,
+  _NL_WDAY_4,
+  _NL_WDAY_5,
+  _NL_WDAY_6,
+  _NL_WDAY_7,
+
+
+
+  _NL_WABMON_1,
+  _NL_WABMON_2,
+  _NL_WABMON_3,
+  _NL_WABMON_4,
+  _NL_WABMON_5,
+  _NL_WABMON_6,
+  _NL_WABMON_7,
+  _NL_WABMON_8,
+  _NL_WABMON_9,
+  _NL_WABMON_10,
+  _NL_WABMON_11,
+  _NL_WABMON_12,
+
+
+
+  _NL_WMON_1,
+  _NL_WMON_2,
+  _NL_WMON_3,
+  _NL_WMON_4,
+  _NL_WMON_5,
+  _NL_WMON_6,
+  _NL_WMON_7,
+  _NL_WMON_8,
+  _NL_WMON_9,
+  _NL_WMON_10,
+  _NL_WMON_11,
+  _NL_WMON_12,
+
+  _NL_WAM_STR,
+  _NL_WPM_STR,
+
+  _NL_WD_T_FMT,
+  _NL_WD_FMT,
+  _NL_WT_FMT,
+  _NL_WT_FMT_AMPM,
+
+  _NL_WERA_YEAR,
+  _NL_WERA_D_FMT,
+  _NL_WALT_DIGITS,
+  _NL_WERA_D_T_FMT,
+  _NL_WERA_T_FMT,
+
+  _NL_TIME_WEEK_NDAYS,
+  _NL_TIME_WEEK_1STDAY,
+  _NL_TIME_WEEK_1STWEEK,
+  _NL_TIME_FIRST_WEEKDAY,
+  _NL_TIME_FIRST_WORKDAY,
+  _NL_TIME_CAL_DIRECTION,
+  _NL_TIME_TIMEZONE,
+
+  _DATE_FMT,
+
+  _NL_W_DATE_FMT,
+
+  _NL_TIME_CODESET,
+
+
+
+  __ALTMON_1,
+  __ALTMON_2,
+  __ALTMON_3,
+  __ALTMON_4,
+  __ALTMON_5,
+  __ALTMON_6,
+  __ALTMON_7,
+  __ALTMON_8,
+  __ALTMON_9,
+  __ALTMON_10,
+  __ALTMON_11,
+  __ALTMON_12,
+# 269 "/usr/include/langinfo.h" 3 4
+  _NL_WALTMON_1,
+  _NL_WALTMON_2,
+  _NL_WALTMON_3,
+  _NL_WALTMON_4,
+  _NL_WALTMON_5,
+  _NL_WALTMON_6,
+  _NL_WALTMON_7,
+  _NL_WALTMON_8,
+  _NL_WALTMON_9,
+  _NL_WALTMON_10,
+  _NL_WALTMON_11,
+  _NL_WALTMON_12,
+
+
+
+  _NL_ABALTMON_1,
+  _NL_ABALTMON_2,
+  _NL_ABALTMON_3,
+  _NL_ABALTMON_4,
+  _NL_ABALTMON_5,
+  _NL_ABALTMON_6,
+  _NL_ABALTMON_7,
+  _NL_ABALTMON_8,
+  _NL_ABALTMON_9,
+  _NL_ABALTMON_10,
+  _NL_ABALTMON_11,
+  _NL_ABALTMON_12,
+
+
+
+  _NL_WABALTMON_1,
+  _NL_WABALTMON_2,
+  _NL_WABALTMON_3,
+  _NL_WABALTMON_4,
+  _NL_WABALTMON_5,
+  _NL_WABALTMON_6,
+  _NL_WABALTMON_7,
+  _NL_WABALTMON_8,
+  _NL_WABALTMON_9,
+  _NL_WABALTMON_10,
+  _NL_WABALTMON_11,
+  _NL_WABALTMON_12,
+
+  _NL_NUM_LC_TIME,
+
+
+
+
+  _NL_COLLATE_NRULES = (((3) << 16) | (0)),
+  _NL_COLLATE_RULESETS,
+  _NL_COLLATE_TABLEMB,
+  _NL_COLLATE_WEIGHTMB,
+  _NL_COLLATE_EXTRAMB,
+  _NL_COLLATE_INDIRECTMB,
+  _NL_COLLATE_GAP1,
+  _NL_COLLATE_GAP2,
+  _NL_COLLATE_GAP3,
+  _NL_COLLATE_TABLEWC,
+  _NL_COLLATE_WEIGHTWC,
+  _NL_COLLATE_EXTRAWC,
+  _NL_COLLATE_INDIRECTWC,
+  _NL_COLLATE_SYMB_HASH_SIZEMB,
+  _NL_COLLATE_SYMB_TABLEMB,
+  _NL_COLLATE_SYMB_EXTRAMB,
+  _NL_COLLATE_COLLSEQMB,
+  _NL_COLLATE_COLLSEQWC,
+  _NL_COLLATE_CODESET,
+  _NL_NUM_LC_COLLATE,
+
+
+
+
+  _NL_CTYPE_CLASS = (((0) << 16) | (0)),
+  _NL_CTYPE_TOUPPER,
+  _NL_CTYPE_GAP1,
+  _NL_CTYPE_TOLOWER,
+  _NL_CTYPE_GAP2,
+  _NL_CTYPE_CLASS32,
+  _NL_CTYPE_GAP3,
+  _NL_CTYPE_GAP4,
+  _NL_CTYPE_GAP5,
+  _NL_CTYPE_GAP6,
+  _NL_CTYPE_CLASS_NAMES,
+  _NL_CTYPE_MAP_NAMES,
+  _NL_CTYPE_WIDTH,
+  _NL_CTYPE_MB_CUR_MAX,
+  _NL_CTYPE_CODESET_NAME,
+  CODESET = _NL_CTYPE_CODESET_NAME,
+
+  _NL_CTYPE_TOUPPER32,
+  _NL_CTYPE_TOLOWER32,
+  _NL_CTYPE_CLASS_OFFSET,
+  _NL_CTYPE_MAP_OFFSET,
+  _NL_CTYPE_INDIGITS_MB_LEN,
+  _NL_CTYPE_INDIGITS0_MB,
+  _NL_CTYPE_INDIGITS1_MB,
+  _NL_CTYPE_INDIGITS2_MB,
+  _NL_CTYPE_INDIGITS3_MB,
+  _NL_CTYPE_INDIGITS4_MB,
+  _NL_CTYPE_INDIGITS5_MB,
+  _NL_CTYPE_INDIGITS6_MB,
+  _NL_CTYPE_INDIGITS7_MB,
+  _NL_CTYPE_INDIGITS8_MB,
+  _NL_CTYPE_INDIGITS9_MB,
+  _NL_CTYPE_INDIGITS_WC_LEN,
+  _NL_CTYPE_INDIGITS0_WC,
+  _NL_CTYPE_INDIGITS1_WC,
+  _NL_CTYPE_INDIGITS2_WC,
+  _NL_CTYPE_INDIGITS3_WC,
+  _NL_CTYPE_INDIGITS4_WC,
+  _NL_CTYPE_INDIGITS5_WC,
+  _NL_CTYPE_INDIGITS6_WC,
+  _NL_CTYPE_INDIGITS7_WC,
+  _NL_CTYPE_INDIGITS8_WC,
+  _NL_CTYPE_INDIGITS9_WC,
+  _NL_CTYPE_OUTDIGIT0_MB,
+  _NL_CTYPE_OUTDIGIT1_MB,
+  _NL_CTYPE_OUTDIGIT2_MB,
+  _NL_CTYPE_OUTDIGIT3_MB,
+  _NL_CTYPE_OUTDIGIT4_MB,
+  _NL_CTYPE_OUTDIGIT5_MB,
+  _NL_CTYPE_OUTDIGIT6_MB,
+  _NL_CTYPE_OUTDIGIT7_MB,
+  _NL_CTYPE_OUTDIGIT8_MB,
+  _NL_CTYPE_OUTDIGIT9_MB,
+  _NL_CTYPE_OUTDIGIT0_WC,
+  _NL_CTYPE_OUTDIGIT1_WC,
+  _NL_CTYPE_OUTDIGIT2_WC,
+  _NL_CTYPE_OUTDIGIT3_WC,
+  _NL_CTYPE_OUTDIGIT4_WC,
+  _NL_CTYPE_OUTDIGIT5_WC,
+  _NL_CTYPE_OUTDIGIT6_WC,
+  _NL_CTYPE_OUTDIGIT7_WC,
+  _NL_CTYPE_OUTDIGIT8_WC,
+  _NL_CTYPE_OUTDIGIT9_WC,
+  _NL_CTYPE_TRANSLIT_TAB_SIZE,
+  _NL_CTYPE_TRANSLIT_FROM_IDX,
+  _NL_CTYPE_TRANSLIT_FROM_TBL,
+  _NL_CTYPE_TRANSLIT_TO_IDX,
+  _NL_CTYPE_TRANSLIT_TO_TBL,
+  _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN,
+  _NL_CTYPE_TRANSLIT_DEFAULT_MISSING,
+  _NL_CTYPE_TRANSLIT_IGNORE_LEN,
+  _NL_CTYPE_TRANSLIT_IGNORE,
+  _NL_CTYPE_MAP_TO_NONASCII,
+  _NL_CTYPE_NONASCII_CASE,
+  _NL_CTYPE_EXTRA_MAP_1,
+  _NL_CTYPE_EXTRA_MAP_2,
+  _NL_CTYPE_EXTRA_MAP_3,
+  _NL_CTYPE_EXTRA_MAP_4,
+  _NL_CTYPE_EXTRA_MAP_5,
+  _NL_CTYPE_EXTRA_MAP_6,
+  _NL_CTYPE_EXTRA_MAP_7,
+  _NL_CTYPE_EXTRA_MAP_8,
+  _NL_CTYPE_EXTRA_MAP_9,
+  _NL_CTYPE_EXTRA_MAP_10,
+  _NL_CTYPE_EXTRA_MAP_11,
+  _NL_CTYPE_EXTRA_MAP_12,
+  _NL_CTYPE_EXTRA_MAP_13,
+  _NL_CTYPE_EXTRA_MAP_14,
+  _NL_NUM_LC_CTYPE,
+
+
+
+
+  __INT_CURR_SYMBOL = (((4) << 16) | (0)),
+
+
+
+  __CURRENCY_SYMBOL,
+
+
+
+  __MON_DECIMAL_POINT,
+
+
+
+  __MON_THOUSANDS_SEP,
+
+
+
+  __MON_GROUPING,
+
+
+
+  __POSITIVE_SIGN,
+
+
+
+  __NEGATIVE_SIGN,
+
+
+
+  __INT_FRAC_DIGITS,
+
+
+
+  __FRAC_DIGITS,
+
+
+
+  __P_CS_PRECEDES,
+
+
+
+  __P_SEP_BY_SPACE,
+
+
+
+  __N_CS_PRECEDES,
+
+
+
+  __N_SEP_BY_SPACE,
+
+
+
+  __P_SIGN_POSN,
+
+
+
+  __N_SIGN_POSN,
+
+
+
+  _NL_MONETARY_CRNCYSTR,
+
+  __INT_P_CS_PRECEDES,
+
+
+
+  __INT_P_SEP_BY_SPACE,
+
+
+
+  __INT_N_CS_PRECEDES,
+
+
+
+  __INT_N_SEP_BY_SPACE,
+
+
+
+  __INT_P_SIGN_POSN,
+
+
+
+  __INT_N_SIGN_POSN,
+
+
+
+  _NL_MONETARY_DUO_INT_CURR_SYMBOL,
+  _NL_MONETARY_DUO_CURRENCY_SYMBOL,
+  _NL_MONETARY_DUO_INT_FRAC_DIGITS,
+  _NL_MONETARY_DUO_FRAC_DIGITS,
+  _NL_MONETARY_DUO_P_CS_PRECEDES,
+  _NL_MONETARY_DUO_P_SEP_BY_SPACE,
+  _NL_MONETARY_DUO_N_CS_PRECEDES,
+  _NL_MONETARY_DUO_N_SEP_BY_SPACE,
+  _NL_MONETARY_DUO_INT_P_CS_PRECEDES,
+  _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE,
+  _NL_MONETARY_DUO_INT_N_CS_PRECEDES,
+  _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE,
+  _NL_MONETARY_DUO_P_SIGN_POSN,
+  _NL_MONETARY_DUO_N_SIGN_POSN,
+  _NL_MONETARY_DUO_INT_P_SIGN_POSN,
+  _NL_MONETARY_DUO_INT_N_SIGN_POSN,
+  _NL_MONETARY_UNO_VALID_FROM,
+  _NL_MONETARY_UNO_VALID_TO,
+  _NL_MONETARY_DUO_VALID_FROM,
+  _NL_MONETARY_DUO_VALID_TO,
+  _NL_MONETARY_CONVERSION_RATE,
+  _NL_MONETARY_DECIMAL_POINT_WC,
+  _NL_MONETARY_THOUSANDS_SEP_WC,
+  _NL_MONETARY_CODESET,
+  _NL_NUM_LC_MONETARY,
+
+
+
+  __DECIMAL_POINT = (((1) << 16) | (0)),
+
+
+
+  RADIXCHAR = __DECIMAL_POINT,
+
+  __THOUSANDS_SEP,
+
+
+
+  THOUSEP = __THOUSANDS_SEP,
+
+  __GROUPING,
+
+
+
+  _NL_NUMERIC_DECIMAL_POINT_WC,
+  _NL_NUMERIC_THOUSANDS_SEP_WC,
+  _NL_NUMERIC_CODESET,
+  _NL_NUM_LC_NUMERIC,
+
+  __YESEXPR = (((5) << 16) | (0)),
+
+  __NOEXPR,
+
+  __YESSTR,
+
+
+
+  __NOSTR,
+
+
+
+  _NL_MESSAGES_CODESET,
+  _NL_NUM_LC_MESSAGES,
+
+  _NL_PAPER_HEIGHT = (((7) << 16) | (0)),
+  _NL_PAPER_WIDTH,
+  _NL_PAPER_CODESET,
+  _NL_NUM_LC_PAPER,
+
+  _NL_NAME_NAME_FMT = (((8) << 16) | (0)),
+  _NL_NAME_NAME_GEN,
+  _NL_NAME_NAME_MR,
+  _NL_NAME_NAME_MRS,
+  _NL_NAME_NAME_MISS,
+  _NL_NAME_NAME_MS,
+  _NL_NAME_CODESET,
+  _NL_NUM_LC_NAME,
+
+  _NL_ADDRESS_POSTAL_FMT = (((9) << 16) | (0)),
+  _NL_ADDRESS_COUNTRY_NAME,
+  _NL_ADDRESS_COUNTRY_POST,
+  _NL_ADDRESS_COUNTRY_AB2,
+  _NL_ADDRESS_COUNTRY_AB3,
+  _NL_ADDRESS_COUNTRY_CAR,
+  _NL_ADDRESS_COUNTRY_NUM,
+  _NL_ADDRESS_COUNTRY_ISBN,
+  _NL_ADDRESS_LANG_NAME,
+  _NL_ADDRESS_LANG_AB,
+  _NL_ADDRESS_LANG_TERM,
+  _NL_ADDRESS_LANG_LIB,
+  _NL_ADDRESS_CODESET,
+  _NL_NUM_LC_ADDRESS,
+
+  _NL_TELEPHONE_TEL_INT_FMT = (((10) << 16) | (0)),
+  _NL_TELEPHONE_TEL_DOM_FMT,
+  _NL_TELEPHONE_INT_SELECT,
+  _NL_TELEPHONE_INT_PREFIX,
+  _NL_TELEPHONE_CODESET,
+  _NL_NUM_LC_TELEPHONE,
+
+  _NL_MEASUREMENT_MEASUREMENT = (((11) << 16) | (0)),
+  _NL_MEASUREMENT_CODESET,
+  _NL_NUM_LC_MEASUREMENT,
+
+  _NL_IDENTIFICATION_TITLE = (((12) << 16) | (0)),
+  _NL_IDENTIFICATION_SOURCE,
+  _NL_IDENTIFICATION_ADDRESS,
+  _NL_IDENTIFICATION_CONTACT,
+  _NL_IDENTIFICATION_EMAIL,
+  _NL_IDENTIFICATION_TEL,
+  _NL_IDENTIFICATION_FAX,
+  _NL_IDENTIFICATION_LANGUAGE,
+  _NL_IDENTIFICATION_TERRITORY,
+  _NL_IDENTIFICATION_AUDIENCE,
+  _NL_IDENTIFICATION_APPLICATION,
+  _NL_IDENTIFICATION_ABBREVIATION,
+  _NL_IDENTIFICATION_REVISION,
+  _NL_IDENTIFICATION_DATE,
+  _NL_IDENTIFICATION_CATEGORY,
+  _NL_IDENTIFICATION_CODESET,
+  _NL_NUM_LC_IDENTIFICATION,
+
+
+  _NL_NUM
+};
+# 661 "/usr/include/langinfo.h" 3 4
+extern char *nl_langinfo (nl_item __item) noexcept (true);
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 1 3 4
+# 22 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h" 3 4
+struct __locale_struct
+{
+
+  struct __locale_data *__locales[13];
+
+
+  const unsigned short int *__ctype_b;
+  const int *__ctype_tolower;
+  const int *__ctype_toupper;
+
+
+  const char *__names[13];
+};
+
+typedef struct __locale_struct *__locale_t;
+# 23 "/usr/include/x86_64-linux-gnu/bits/types/locale_t.h" 2 3 4
+
+typedef __locale_t locale_t;
+# 667 "/usr/include/langinfo.h" 2 3 4
+
+
+extern char *nl_langinfo_l (nl_item __item, locale_t __l);
+
+
+}
+# 2 "t.c++" 2
++ cat t.c++
+#include "paths.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/paths.h" 1 3 4
+# 2 "t.c++" 2
++ cat t.c++
+#include "sys/modem.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: sys/modem.h: No such file or directory
+    1 | #include "sys/modem.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "sys/termiox.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+t.c++:1:10: fatal error: sys/termiox.h: No such file or directory
+    1 | #include "sys/termiox.h"
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+#include <stdlib.h>
+extern int flock(); int main(int argc, char *argv[]){flock();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern void logwtmp (const char *__ut_line, const char *__ut_name,       const char *__ut_host) noexcept (true);
++ cat t.c
+extern int logout();
+int t(void) { logout(); return 0; }
+int main(int argc, char *argv[]){ t(); return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c -lutil
++ cat t.c++
+#include "utmp.h"
++ make -f confMakefile t
+extern int logout (const char *__ut_line) noexcept (true);
++ cat t.c
+#include "paths.h"
+#ifdef _PATH_DEV
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+#include "paths.h"
+#ifdef _PATH_DEVNULL
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+#include "paths.h"
+#ifdef _PATH_TMP
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c++
+#include "utmpx.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/utmpx.h" 1 3 4
+# 21 "/usr/include/utmpx.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 486 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 487 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 22 "/usr/include/utmpx.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/time.h" 1 3 4
+# 23 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types.h" 1 3 4
+# 27 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 28 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 29 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+
+# 31 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+typedef unsigned char __u_char;
+typedef unsigned short int __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long int __u_long;
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef signed short int __int16_t;
+typedef unsigned short int __uint16_t;
+typedef signed int __int32_t;
+typedef unsigned int __uint32_t;
+
+typedef signed long int __int64_t;
+typedef unsigned long int __uint64_t;
+
+
+
+
+
+
+typedef __int8_t __int_least8_t;
+typedef __uint8_t __uint_least8_t;
+typedef __int16_t __int_least16_t;
+typedef __uint16_t __uint_least16_t;
+typedef __int32_t __int_least32_t;
+typedef __uint32_t __uint_least32_t;
+typedef __int64_t __int_least64_t;
+typedef __uint64_t __uint_least64_t;
+
+
+
+typedef long int __quad_t;
+typedef unsigned long int __u_quad_t;
+
+
+
+
+
+
+
+typedef long int __intmax_t;
+typedef unsigned long int __uintmax_t;
+# 141 "/usr/include/x86_64-linux-gnu/bits/types.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/typesizes.h" 1 3 4
+# 142 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/time64.h" 1 3 4
+# 143 "/usr/include/x86_64-linux-gnu/bits/types.h" 2 3 4
+
+
+typedef unsigned long int __dev_t;
+typedef unsigned int __uid_t;
+typedef unsigned int __gid_t;
+typedef unsigned long int __ino_t;
+typedef unsigned long int __ino64_t;
+typedef unsigned int __mode_t;
+typedef unsigned long int __nlink_t;
+typedef long int __off_t;
+typedef long int __off64_t;
+typedef int __pid_t;
+typedef struct { int __val[2]; } __fsid_t;
+typedef long int __clock_t;
+typedef unsigned long int __rlim_t;
+typedef unsigned long int __rlim64_t;
+typedef unsigned int __id_t;
+typedef long int __time_t;
+typedef unsigned int __useconds_t;
+typedef long int __suseconds_t;
+typedef long int __suseconds64_t;
+
+typedef int __daddr_t;
+typedef int __key_t;
+
+
+typedef int __clockid_t;
+
+
+typedef void * __timer_t;
+
+
+typedef long int __blksize_t;
+
+
+
+
+typedef long int __blkcnt_t;
+typedef long int __blkcnt64_t;
+
+
+typedef unsigned long int __fsblkcnt_t;
+typedef unsigned long int __fsblkcnt64_t;
+
+
+typedef unsigned long int __fsfilcnt_t;
+typedef unsigned long int __fsfilcnt64_t;
+
+
+typedef long int __fsword_t;
+
+typedef long int __ssize_t;
+
+
+typedef long int __syscall_slong_t;
+
+typedef unsigned long int __syscall_ulong_t;
+
+
+
+typedef __off64_t __loff_t;
+typedef char *__caddr_t;
+
+
+typedef long int __intptr_t;
+
+
+typedef unsigned int __socklen_t;
+
+
+
+
+typedef int __sig_atomic_t;
+# 24 "/usr/include/x86_64-linux-gnu/sys/time.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/bits/types/time_t.h" 3 4
+typedef __time_t time_t;
+# 25 "/usr/include/x86_64-linux-gnu/sys/time.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h" 1 3 4
+
+
+
+
+
+
+
+struct timeval
+{
+
+
+
+
+  __time_t tv_sec;
+  __suseconds_t tv_usec;
+
+};
+# 26 "/usr/include/x86_64-linux-gnu/sys/time.h" 2 3 4
+
+
+typedef __suseconds_t suseconds_t;
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/sys/select.h" 1 3 4
+# 30 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select.h" 1 3 4
+# 31 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 1 3 4
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h" 1 3 4
+
+
+
+
+typedef struct
+{
+  unsigned long int __val[(1024 / (8 * sizeof (unsigned long int)))];
+} __sigset_t;
+# 5 "/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h" 2 3 4
+
+
+typedef __sigset_t sigset_t;
+# 34 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 1 3 4
+
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/endian.h" 1 3 4
+# 35 "/usr/include/x86_64-linux-gnu/bits/endian.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/endianness.h" 1 3 4
+# 36 "/usr/include/x86_64-linux-gnu/bits/endian.h" 2 3 4
+# 7 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 2 3 4
+
+
+
+
+struct timespec
+{
+
+
+
+  __time_t tv_sec;
+
+
+
+
+  __syscall_slong_t tv_nsec;
+# 31 "/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h" 3 4
+};
+# 40 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+# 49 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef long int __fd_mask;
+# 59 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+typedef struct
+  {
+
+
+
+    __fd_mask fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+
+
+
+
+
+  } fd_set;
+
+
+
+
+
+
+typedef __fd_mask fd_mask;
+# 91 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern "C" {
+# 102 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int select (int __nfds, fd_set *__restrict __readfds,
+     fd_set *__restrict __writefds,
+     fd_set *__restrict __exceptfds,
+     struct timeval *__restrict __timeout);
+# 127 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+extern int pselect (int __nfds, fd_set *__restrict __readfds,
+      fd_set *__restrict __writefds,
+      fd_set *__restrict __exceptfds,
+      const struct timespec *__restrict __timeout,
+      const __sigset_t *__restrict __sigmask);
+# 150 "/usr/include/x86_64-linux-gnu/sys/select.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/select2.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/bits/select2.h" 3 4
+extern long int __fdelt_chk (long int __d);
+extern long int __fdelt_warn (long int __d)
+  __attribute__((__warning__ ("bit outside of fd_set selected")));
+# 151 "/usr/include/x86_64-linux-gnu/sys/select.h" 2 3 4
+
+
+}
+# 33 "/usr/include/x86_64-linux-gnu/sys/time.h" 2 3 4
+
+extern "C" {
+# 52 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+struct timezone
+  {
+    int tz_minuteswest;
+    int tz_dsttime;
+  };
+# 67 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+extern int gettimeofday (struct timeval *__restrict __tv,
+    void *__restrict __tz) noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 86 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+extern int settimeofday (const struct timeval *__tv,
+    const struct timezone *__tz)
+     noexcept (true);
+
+
+
+
+
+extern int adjtime (const struct timeval *__delta,
+      struct timeval *__olddelta) noexcept (true);
+# 114 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+enum __itimer_which
+  {
+
+    ITIMER_REAL = 0,
+
+
+    ITIMER_VIRTUAL = 1,
+
+
+
+    ITIMER_PROF = 2
+
+  };
+
+
+
+struct itimerval
+  {
+
+    struct timeval it_interval;
+
+    struct timeval it_value;
+  };
+
+
+
+
+
+
+typedef int __itimer_which_t;
+
+
+
+
+
+extern int getitimer (__itimer_which_t __which,
+        struct itimerval *__value) noexcept (true);
+
+
+
+
+extern int setitimer (__itimer_which_t __which,
+        const struct itimerval *__restrict __new,
+        struct itimerval *__restrict __old) noexcept (true);
+
+
+
+
+extern int utimes (const char *__file, const struct timeval __tvp[2])
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+# 189 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+extern int lutimes (const char *__file, const struct timeval __tvp[2])
+     noexcept (true) __attribute__ ((__nonnull__ (1)));
+
+
+extern int futimes (int __fd, const struct timeval __tvp[2]) noexcept (true);
+# 214 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+extern int futimesat (int __fd, const char *__file,
+        const struct timeval __tvp[2]) noexcept (true);
+# 258 "/usr/include/x86_64-linux-gnu/sys/time.h" 3 4
+}
+# 23 "/usr/include/utmpx.h" 2 3 4
+
+
+
+typedef __pid_t pid_t;
+
+
+
+
+# 1 "/usr/include/x86_64-linux-gnu/bits/utmpx.h" 1 3 4
+# 25 "/usr/include/x86_64-linux-gnu/bits/utmpx.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 26 "/usr/include/x86_64-linux-gnu/bits/utmpx.h" 2 3 4
+
+
+
+# 1 "/usr/include/paths.h" 1 3 4
+# 30 "/usr/include/x86_64-linux-gnu/bits/utmpx.h" 2 3 4
+# 42 "/usr/include/x86_64-linux-gnu/bits/utmpx.h" 3 4
+struct __exit_status
+  {
+
+    short int e_termination;
+    short int e_exit;
+
+
+
+
+  };
+
+
+
+struct utmpx
+{
+  short int ut_type;
+  __pid_t ut_pid;
+  char ut_line[32]
+    __attribute__ ((__nonstring__));
+  char ut_id[4]
+    __attribute__ ((__nonstring__));
+  char ut_user[32]
+    __attribute__ ((__nonstring__));
+  char ut_host[256]
+    __attribute__ ((__nonstring__));
+  struct __exit_status ut_exit;
+
+
+
+
+
+
+  __int32_t ut_session;
+  struct
+  {
+    __int32_t tv_sec;
+    __int32_t tv_usec;
+  } ut_tv;
+
+
+
+
+  __int32_t ut_addr_v6[4];
+  char __glibc_reserved[20];
+};
+# 32 "/usr/include/utmpx.h" 2 3 4
+# 43 "/usr/include/utmpx.h" 3 4
+struct utmp;
+
+
+
+extern "C" {
+
+
+
+
+
+extern void setutxent (void);
+
+
+
+
+
+extern void endutxent (void);
+
+
+
+
+
+extern struct utmpx *getutxent (void);
+
+
+
+
+
+extern struct utmpx *getutxid (const struct utmpx *__id);
+
+
+
+
+
+extern struct utmpx *getutxline (const struct utmpx *__line);
+
+
+
+
+
+extern struct utmpx *pututxline (const struct utmpx *__utmpx);
+# 93 "/usr/include/utmpx.h" 3 4
+extern int utmpxname (const char *__file);
+
+
+
+
+
+
+
+extern void updwtmpx (const char *__wtmpx_file,
+        const struct utmpx *__utmpx);
+# 111 "/usr/include/utmpx.h" 3 4
+extern void getutmp (const struct utmpx *__utmpx,
+       struct utmp *__utmp);
+
+
+
+
+
+
+
+extern void getutmpx (const struct utmp *__utmp, struct utmpx *__utmpx);
+
+
+}
+# 2 "t.c++" 2
++ cat t.c
+#include "paths.h"
+#include "utmp.h"
+#ifdef _PATH_UTMP
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c++
+#include <utmp.h>
+int main()
+{
+    struct utmp x;
+    x.ut_exit.e_exit = 0;
+    x.ut_exit.e_termination = 0;
+    return 0;
+}
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  t.c++
++ cat t.c
+#include "paths.h"
+#include "utmp.h"
+#ifdef _PATH_WTMP
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+#include "sys/priocntl.h"
+#include "sys/rtpriocntl.h"
+#ifdef RT_NOCHANGE
+FOUND
+#endif
++ make -f confMakefile t
+t.c:1:10: fatal error: sys/priocntl.h: No such file or directory
+    1 | #include "sys/priocntl.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+#include "sys/priocntl.h"
+#include "sys/fppriocntl.h"
+#ifdef FP_NOCHANGE
+FOUND
+#endif
++ make -f confMakefile t
+t.c:1:10: fatal error: sys/priocntl.h: No such file or directory
+    1 | #include "sys/priocntl.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+#include "sys/schedctl.h"
+#ifdef NDPRI
+FOUND
+#endif
++ make -f confMakefile t
+t.c:1:10: fatal error: sys/schedctl.h: No such file or directory
+    1 | #include "sys/schedctl.h"
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+#include "sys/rtprio.h"
+#ifdef RTPRIO_RTOFF
+FOUND
+#endif
++ make -f confMakefile t
+t.c:1:10: fatal error: sys/rtprio.h: No such file or directory
+    1 | #include "sys/rtprio.h"
+      |          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [confMakefile:355: t] Error 1
++ cat t.c
+#include "unistd.h"
+#include "sched.h"
+#if defined(_POSIX_PRIORITY_SCHEDULING) && (_POSIX_PRIORITY_SCHEDULING > 0L)
+FOUND
+#endif
++ make -f confMakefile t
+FOUND
++ cat t.c
+#include <sys/ioctl.h>
+int main(int argc, char *argv[])
+{
+    ioctl(0, TXADDCD, "rts");
+    ioctl(0, TXDELCD, "rts");
+}
++ make -f confMakefile t
+/usr/bin/gcc t.c
+t.c: In function 'main':
+t.c:4:14: error: 'TXADDCD' undeclared (first use in this function)
+    4 |     ioctl(0, TXADDCD, "rts");
+      |              ^~~~~~~
+t.c:4:14: note: each undeclared identifier is reported only once for each function it appears in
+t.c:5:14: error: 'TXDELCD' undeclared (first use in this function)
+    5 |     ioctl(0, TXDELCD, "rts");
+      |              ^~~~~~~
+make: *** [confMakefile:355: t] Error 1
++ cat t.c++
+#include "crypt.h"
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -O  -E t.c++
+# 0 "t.c++"
+# 1 "/root/hylafax-7.0.6//"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "t.c++"
+# 1 "/usr/include/crypt.h" 1 3 4
+# 22 "/usr/include/crypt.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 1 3 4
+# 24 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/features.h" 1 3 4
+# 392 "/usr/include/features.h" 3 4
+# 1 "/usr/include/features-time64.h" 1 3 4
+# 20 "/usr/include/features-time64.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 21 "/usr/include/features-time64.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 1 3 4
+# 19 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 20 "/usr/include/x86_64-linux-gnu/bits/timesize.h" 2 3 4
+# 22 "/usr/include/features-time64.h" 2 3 4
+# 393 "/usr/include/features.h" 2 3 4
+# 510 "/usr/include/features.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 1 3 4
+# 10 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/gnu/stubs-64.h" 1 3 4
+# 11 "/usr/include/x86_64-linux-gnu/gnu/stubs.h" 2 3 4
+# 511 "/usr/include/features.h" 2 3 4
+# 25 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 559 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/wordsize.h" 1 3 4
+# 560 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 1 "/usr/include/x86_64-linux-gnu/bits/long-double.h" 1 3 4
+# 561 "/usr/include/x86_64-linux-gnu/sys/cdefs.h" 2 3 4
+# 23 "/usr/include/crypt.h" 2 3 4
+
+
+# 24 "/usr/include/crypt.h" 3 4
+extern "C" {
+# 63 "/usr/include/crypt.h" 3 4
+extern char *crypt (const char *__phrase, const char *__setting)
+noexcept (true);
+
+
+
+
+
+
+
+struct crypt_data
+{
+
+
+
+  char output[384];
+# 86 "/usr/include/crypt.h" 3 4
+  char setting[384];
+
+
+
+
+  char input[512];
+
+
+
+
+
+
+  char reserved[767];
+
+
+
+
+
+
+  char initialized;
+
+
+
+
+  char internal[30720];
+};
+
+
+
+
+extern char *crypt_r (const char *__phrase, const char *__setting,
+                      struct crypt_data *__restrict __data)
+noexcept (true);
+# 128 "/usr/include/crypt.h" 3 4
+extern char *crypt_rn (const char *__phrase, const char *__setting,
+                       void *__data, int __size)
+noexcept (true);
+# 142 "/usr/include/crypt.h" 3 4
+extern char *crypt_ra (const char *__phrase, const char *__setting,
+                       void **__data, int *__size)
+noexcept (true);
+# 167 "/usr/include/crypt.h" 3 4
+extern char *crypt_gensalt (const char *__prefix, unsigned long __count,
+                            const char *__rbytes, int __nrbytes)
+noexcept (true);
+# 178 "/usr/include/crypt.h" 3 4
+extern char *crypt_gensalt_rn (const char *__prefix, unsigned long __count,
+                               const char *__rbytes, int __nrbytes,
+                               char *__output, int __output_size)
+noexcept (true);
+
+
+
+
+
+
+
+extern char * crypt_gensalt_r (const char *__prefix, unsigned long __count, const char *__rbytes, int __nrbytes, char *__output, int __output_size) noexcept (true) __asm__ ("" "crypt_gensalt_rn")
+
+
+                                                                   ;
+# 201 "/usr/include/crypt.h" 3 4
+extern char *crypt_gensalt_ra (const char *__prefix, unsigned long __count,
+                               const char *__rbytes, int __nrbytes)
+noexcept (true);
+
+
+
+
+
+extern int crypt_checksalt (const char *__setting);
+# 225 "/usr/include/crypt.h" 3 4
+extern const char *crypt_preferred_method (void);
+# 249 "/usr/include/crypt.h" 3 4
+}
+# 2 "t.c++" 2
++ cat t.c++
+#include "unistd.h"
+#include "crypt.h"
++ make -f confMakefile t
+extern char *crypt (const char *__key, const char *__salt)
+extern char *crypt (const char *__phrase, const char *__setting)
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int cfsetospeed (struct termios *__termios_p, speed_t __speed) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int cfsetispeed (struct termios *__termios_p, speed_t __speed) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcgetattr (int __fd, struct termios *__termios_p) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcsetattr (int __fd, int __optional_actions,        const struct termios *__termios_p) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcsendbreak (int __fd, int __duration) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcdrain (int __fd);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcflush (int __fd, int __queue_selector) noexcept (true);
++ cat t.c++
+#include "termios.h"
++ make -f confMakefile t
+extern int tcflow (int __fd, int __action) noexcept (true);
++ cat t.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "tiffio.h"
+int main(int argc, char *argv[])
+{
+    printf( "header_ver=%d lib_ver=%s", TIFFLIB_VERSION, TIFFGetVersion() );
+    exit(0);
+}
++ make -f confMakefile t
+/usr/bin/gcc   t.c -ltiff  -lcrypt -lutil -lm 
++ cat t.c
+#include "net/if.h"
+#ifdef s6_addr32
+FOUND
+#endif
++ make -f confMakefile t
++ cat t.c
+#include <stdlib.h>
+#include <stdio.h>
+main(){open_memstream((void*)0, (void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:3:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    3 | main(){open_memstream((void*)0, (void*)0);exit(0);}
+      | ^~~~
++ cat t.c
+#include <stdlib.h>
+extern int flock(); int main(int argc, char *argv[]){flock();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+extern int ftruncate(); int main(int argc, char *argv[]){ftruncate();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+extern int setegid(); int main(int argc, char *argv[]){setegid();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+extern int seteuid(); int main(int argc, char *argv[]){seteuid();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+extern int setvbuf(); int main(int argc, char *argv[]){setvbuf();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+extern int strcasecmp(); int main(int argc, char *argv[]){strcasecmp();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c: In function 'main':
+t.c:2:59: warning: too few arguments to built-in function 'strcasecmp' expecting 2 [-Wbuiltin-declaration-mismatch]
+    2 | extern int strcasecmp(); int main(int argc, char *argv[]){strcasecmp();exit(0);}
+      |                                                           ^~~~~~~~~~
+t.c:2:12: note: declared here
+    2 | extern int strcasecmp(); int main(int argc, char *argv[]){strcasecmp();exit(0);}
+      |            ^~~~~~~~~~
++ cat t.c
+#include <stdlib.h>
+extern int writev(); int main(int argc, char *argv[]){writev();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+main(){random();exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:2:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    2 | main(){random();exit(0);}
+      | ^~~~
++ cat t.c
+#include <stdlib.h>
+#include <unistd.h>
+main(){getopt(0, (void*)0, (void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:3:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    3 | main(){getopt(0, (void*)0, (void*)0);exit(0);}
+      | ^~~~
+t.c: In function 'main':
+t.c:3:8: warning: argument 2 null where non-null expected [-Wnonnull]
+    3 | main(){getopt(0, (void*)0, (void*)0);exit(0);}
+      |        ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:27,
+                 from /usr/include/unistd.h:903,
+                 from t.c:2:
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:91:12: note: in a call to function 'getopt' declared 'nonnull'
+   91 | extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
+      |            ^~~~~~
+t.c:3:8: warning: argument 3 null where non-null expected [-Wnonnull]
+    3 | main(){getopt(0, (void*)0, (void*)0);exit(0);}
+      |        ^~~~~~
+In file included from /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:27,
+                 from /usr/include/unistd.h:903,
+                 from t.c:2:
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:91:12: note: in a call to function 'getopt' declared 'nonnull'
+   91 | extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
+      |            ^~~~~~
++ cat t.c
+#include <stdlib.h>
+#include <stdio.h>
+main(){snprintf((void*)0, 0, (void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:3:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    3 | main(){snprintf((void*)0, 0, (void*)0);exit(0);}
+      | ^~~~
+t.c: In function 'main':
+t.c:3:8: warning: argument 3 null where non-null expected [-Wnonnull]
+    3 | main(){snprintf((void*)0, 0, (void*)0);exit(0);}
+      |        ^~~~~~~~
+In file included from t.c:2:
+/usr/include/stdio.h:378:12: note: in a call to function 'snprintf' declared 'nonnull'
+  378 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |            ^~~~~~~~
+t.c:3:8: warning: null format string [-Wformat-truncation=]
+    3 | main(){snprintf((void*)0, 0, (void*)0);exit(0);}
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++ cat t.c
+#include <stdlib.h>
+extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:2:1: warning: 'format' attribute cannot be applied to a function that does not take variable arguments [-Wattributes]
+    2 | extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
+      | ^~~~~~
+t.c: In function 'main':
+t.c:2:78: warning: 'vsnprintf' argument 2 type is 'int' where 'long unsigned int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+    2 | extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
+      |                                                                              ^
+t.c:2:12: note: built-in 'vsnprintf' declared here
+    2 | extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
+      |            ^~~~~~~~~
+t.c:2:58: warning: argument 3 null where non-null expected [-Wnonnull]
+    2 | extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
+      |                                                          ^~~~~~~~~
+t.c:2:12: note: in a call to function 'vsnprintf' declared 'nonnull'
+    2 | extern int vsnprintf(); int main(int argc, char *argv[]){vsnprintf((void*)0, 0, (void*)0, (void*)0);exit(0);}
+      |            ^~~~~~~~~
++ cat t.c
+#include <stdlib.h>
+extern int mkstemp(); int main(int argc, char *argv[]){mkstemp((void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c: In function 'main':
+t.c:2:56: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | extern int mkstemp(); int main(int argc, char *argv[]){mkstemp((void*)0);exit(0);}
+      |                                                        ^~~~~~~
+In file included from t.c:1:
+/usr/include/stdlib.h:695:12: note: in a call to function 'mkstemp' declared 'nonnull'
+  695 | extern int mkstemp (char *__template) __nonnull ((1)) __wur;
+      |            ^~~~~~~
++ cat t.c
+#include <stdlib.h>
+extern int setenv(); int main(int argc, char *argv[]){setenv((void*)0, (void*)0, 0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c: In function 'main':
+t.c:2:55: warning: argument 2 null where non-null expected [-Wnonnull]
+    2 | extern int setenv(); int main(int argc, char *argv[]){setenv((void*)0, (void*)0, 0);exit(0);}
+      |                                                       ^~~~~~
+In file included from t.c:1:
+/usr/include/stdlib.h:660:12: note: in a call to function 'setenv' declared 'nonnull'
+  660 | extern int setenv (const char *__name, const char *__value, int __replace)
+      |            ^~~~~~
++ cat t.c
+#include <stdlib.h>
+main(){srandom(0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:2:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    2 | main(){srandom(0);exit(0);}
+      | ^~~~
++ cat t.c
+#include <stdlib.h>
+main(){strtod((void*)0, (void*)0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:2:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    2 | main(){strtod((void*)0, (void*)0);exit(0);}
+      | ^~~~
+t.c: In function 'main':
+t.c:2:8: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | main(){strtod((void*)0, (void*)0);exit(0);}
+      |        ^~~~~~
+In file included from t.c:1:
+/usr/include/stdlib.h:118:15: note: in a call to function 'strtod' declared 'nonnull'
+  118 | extern double strtod (const char *__restrict __nptr,
+      |               ^~~~~~
++ cat t.c
+#include <stdlib.h>
+main(){strtoul((void*)0, (void*)0, 0);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
+t.c:2:1: warning: return type defaults to 'int' [-Wimplicit-int]
+    2 | main(){strtoul((void*)0, (void*)0, 0);exit(0);}
+      | ^~~~
+t.c: In function 'main':
+t.c:2:8: warning: argument 1 null where non-null expected [-Wnonnull]
+    2 | main(){strtoul((void*)0, (void*)0, 0);exit(0);}
+      |        ^~~~~~~
+In file included from t.c:1:
+/usr/include/stdlib.h:181:26: note: in a call to function 'strtoul' declared 'nonnull'
+  181 | extern unsigned long int strtoul (const char *__restrict __nptr,
+      |                          ^~~~~~~
++ cat t.c
+#include <syslog.h>
+#include <stdlib.h>
+#include "port.h"
+int main(int argc, char *argv[]){syslog(0,"foo");exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <syslog.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include "port.h"
+int main(int argc, char *argv[]){va_list ap; vsyslog(0,"foo", ap);exit(0);}
++ make -f confMakefile t
+/usr/bin/gcc t.c  -lcrypt -lutil -lm 
++ cat t.c
+#include <stdlib.h>
+#include <stdio.h>
+#include "zlib.h"
+int main(int argc, char *argv[])
+{
+    if (strcmp(ZLIB_VERSION, "0.95") < 0) {     /* include file version */
+        printf("old include files: version %u\n", ZLIB_VERSION);
+        exit(-1);
+    }
+    if (strncmp(zlib_version, ZLIB_VERSION, 4) != 0) {
+        printf("library/header file incompatibility: %s %s\n",
+        zlib_version, ZLIB_VERSION);
+        exit(-1);
+    } else {
+        exit(0);
+    }
+}
++ make -f confMakefile t
+/usr/bin/gcc   t.c -lz  -lcrypt -lutil -lm 
+t.c: In function 'main':
+t.c:6:9: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+    6 |     if (strcmp(ZLIB_VERSION, "0.95") < 0) {     /* include file version */
+      |         ^~~~~~
+t.c:4:1: note: include '<string.h>' or provide a declaration of 'strcmp'
+    3 | #include "zlib.h"
+  +++ |+#include <string.h>
+    4 | int main(int argc, char *argv[])
+t.c:7:45: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'char *' [-Wformat=]
+    7 |         printf("old include files: version %u\n", ZLIB_VERSION);
+      |                                            ~^
+      |                                             |
+      |                                             unsigned int
+      |                                            %s
+t.c:10:9: warning: implicit declaration of function 'strncmp' [-Wimplicit-function-declaration]
+   10 |     if (strncmp(zlib_version, ZLIB_VERSION, 4) != 0) {
+      |         ^~~~~~~
+t.c:10:9: note: include '<string.h>' or provide a declaration of 'strncmp'
+t.c:10:45: warning: 'strncmp' argument 3 type is 'int' where 'long unsigned int' is expected in a call to built-in function declared without prototype [-Wbuiltin-declaration-mismatch]
+   10 |     if (strncmp(zlib_version, ZLIB_VERSION, 4) != 0) {
+      |                                             ^
+<built-in>: note: built-in 'strncmp' declared here
++ ./a.out
++ cat t.c
+int f(void) { return 0; }
++ make -f confMakefile t
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -fpic -O  -c t.c
+/usr/bin/gcc        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -fpic -O  -shared -fpic -Wl,-soname,t -o t.so.7.0.6 t.o
++ cat t.c++
+int f() { return 0; }
++ make -f confMakefile t
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -fpic -O -c  t.c++
+/usr/bin/g++        -D__ANSI_CPP__ -I. -I. -I. -I././util   -g -fpic -O -shared -fpic -Wl,-soname,t -o t.so.7.0.6 t.o
++ /usr/bin/mawk -v BAR=bar 
+function foo(x) {
+    print "GOT" x
+}
+BEGIN { foo(BAR) }
++ 
+grep GOTbar
+GOTbar
++ mkfifo conffifo
++ /usr/bin/mkfifo conffifo
++ /usr/bin/mv -f t.c t.o
++ rm -f t.c
++ /usr/bin/ln -s foo t.c
++ cat t.c
+#include "paths.h"
+#ifdef _PATH_GETTY
+FOUND
+#endif
++ make -f confMakefile t
++ /opt/local/bin/gs -h
++ grep tiffg3
++ /usr/local/bin/gs -h
++ grep tiffg3
++ /usr/contrib/bin/gs -h
++ grep tiffg3
++ /opt/freeware/bin/gs -h
++ grep tiffg3
++ /usr/gnu/bin/gs -h
++ grep tiffg3
++ /opt/gnu/bin/gs -h
++ grep tiffg3
++ /usr/bin/gs -h
++ grep tiffg3
+   tek4696 tiff12nc tiff24nc tiff32nc tiff48nc tiff64nc tiffcrle tiffg3
+   tiffg32d tiffg4 tiffgray tifflzw tiffpack tiffscaled tiffscaled24
++ /usr/bin/gs -h
++ grep tiffg3
+   tek4696 tiff12nc tiff24nc tiff32nc tiff48nc tiff64nc tiffcrle tiffg3
+   tiffg32d tiffg4 tiffgray tifflzw tiffpack tiffscaled tiffscaled24
